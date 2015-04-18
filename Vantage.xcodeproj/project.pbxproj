@@ -35,6 +35,7 @@
 		09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6731AE2D76700369E06 /* ModelController.swift */; };
 		09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6751AE2D7AF00369E06 /* RootViewController.swift */; };
 		09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6771AE2D89000369E06 /* PlayerController.swift */; };
+		09E9D67B1AE2EEB300369E06 /* TestVideoFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		09E9D6731AE2D76700369E06 /* ModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		09E9D6751AE2D7AF00369E06 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		09E9D6771AE2D89000369E06 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
+		09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVideoFeedController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				09E9D6301AE2D43D00369E06 /* CameraController.swift */,
 				09E9D6771AE2D89000369E06 /* PlayerController.swift */,
 				09E9D6321AE2D43D00369E06 /* Main.storyboard */,
+				09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */,
 				09E9D6351AE2D43D00369E06 /* Images.xcassets */,
 				09E9D6371AE2D43D00369E06 /* LaunchScreen.xib */,
 				09E9D62A1AE2D43D00369E06 /* Supporting Files */,
@@ -312,6 +315,7 @@
 				09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */,
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */,
+				09E9D67B1AE2EEB300369E06 /* TestVideoFeedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
