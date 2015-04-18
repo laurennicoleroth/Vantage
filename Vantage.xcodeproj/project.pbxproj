@@ -36,10 +36,10 @@
 		09ECAA951AE2F3AE00D461C0 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ECAA8F1AE2F3AE00D461C0 /* ParseFacebookUtilsV4.framework */; };
 		09ECAA961AE2F3AE00D461C0 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ECAA901AE2F3AE00D461C0 /* ParseUI.framework */; };
 		09ECAA981AE2F59B00D461C0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ECAA971AE2F59B00D461C0 /* Accounts.framework */; };
-		09ECAA9F1AE2F90800D461C0 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ECAA9E1AE2F90800D461C0 /* LoginController.swift */; };
 		09ECAAAE1AE2FD0600D461C0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ECAAAD1AE2FD0600D461C0 /* FBSDKCoreKit.framework */; };
 		09ECAAB01AE2FE9B00D461C0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ECAAAF1AE2FE9B00D461C0 /* FacebookSDK.framework */; };
 		09ECAAB21AE2FF1000D461C0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ECAAB11AE2FF1000D461C0 /* FBSDKLoginKit.framework */; };
+		09ECAABE1AE30EE200D461C0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ECAABD1AE30EE200D461C0 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,11 +86,11 @@
 		09ECAA8F1AE2F3AE00D461C0 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../../../Downloads/parse-library-1.7.1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		09ECAA901AE2F3AE00D461C0 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../../Downloads/parse-library-1.7.1/ParseUI.framework"; sourceTree = "<group>"; };
 		09ECAA971AE2F59B00D461C0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		09ECAA9E1AE2F90800D461C0 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		09ECAAA01AE2FA0500D461C0 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		09ECAAAD1AE2FD0600D461C0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		09ECAAAF1AE2FE9B00D461C0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../VYNC/VYNC/FacebookSDK.framework; sourceTree = "<group>"; };
 		09ECAAB11AE2FF1000D461C0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		09ECAABD1AE30EE200D461C0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +166,7 @@
 		09E9D6291AE2D43D00369E06 /* Vantage */ = {
 			isa = PBXGroup;
 			children = (
-				09ECAA9E1AE2F90800D461C0 /* LoginController.swift */,
+				09ECAABD1AE30EE200D461C0 /* LoginViewController.swift */,
 				09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */,
 				09E9D6711AE2D6FE00369E06 /* DataViewController.swift */,
 				09E9D62E1AE2D43D00369E06 /* VideoFeedViewController.swift */,
@@ -329,8 +329,8 @@
 				09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */,
 				09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */,
 				09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */,
+				09ECAABE1AE30EE200D461C0 /* LoginViewController.swift in Sources */,
 				09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */,
-				09ECAA9F1AE2F90800D461C0 /* LoginController.swift in Sources */,
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */,
 			);

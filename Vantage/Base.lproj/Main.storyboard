@@ -97,16 +97,17 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="Eca-JA-YpW" kind="relationship" relationship="viewControllers" id="jn2-Oc-Wz2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Login Controller-->
+        <!--Item-->
         <scene sceneID="gdV-d9-sua">
             <objects>
-                <viewController id="Eca-JA-YpW" customClass="LoginController" customModule="Vantage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Eca-JA-YpW" customClass="LoginViewController" customModule="Vantage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aXU-k8-3g1"/>
                         <viewControllerLayoutGuide type="bottom" id="eSF-VF-1JQ"/>
@@ -114,8 +115,25 @@
                     <view key="view" contentMode="scaleToFill" id="SRj-Wy-Ycg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOS-7F-P7c">
+                                <rect key="frame" x="216" y="285" width="143" height="30"/>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="FBLogin:" destination="Eca-JA-YpW" eventType="touchUpInside" id="lwH-ot-qSJ"/>
+                                    <action selector="FBLoginClick:" destination="Eca-JA-YpW" eventType="touchUpInside" id="Fn5-vp-WBL"/>
+                                    <action selector="fbLoginClick:" destination="Eca-JA-YpW" eventType="touchUpInside" id="LZF-Gx-755"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="qOS-7F-P7c" secondAttribute="centerX" id="sXE-Zs-Hib"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="5nV-R4-kba"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0t-dL-BDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
