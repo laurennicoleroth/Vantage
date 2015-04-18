@@ -11,6 +11,7 @@ import Parse
 import Bolts
 
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -27,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("WBn97RGreYL7ObCfSaZlgMv2boXk4xkyI5Lz6Hce",
             clientKey: "FFR5jrkbErWnPUxW3ZipyCTtVTz4QPdo8rb7JOco")
         
-        // [Optional] Track statistics around application opens.
+        FBLoginView.self
+        FBProfilePictureView.self
+        
+//        // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         return true
 
