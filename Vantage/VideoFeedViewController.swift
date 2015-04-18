@@ -19,12 +19,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self;
         tableView.delegate = self;
         
-//        let testObject = PFObject(className: "TestObject")
-//        testObject["foo"] = "baringo"
-//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            println("Object has been saved.")
-//        }
-        // Do any additional setup after loading the view, typically from a nib.
         var video  = PFObject(className: "Videos")
         println(video)
         var query = PFQuery(className: "Videos")
@@ -32,14 +26,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         movieArray = query.findObjects()!
         tableView.reloadData();
         println(movieArray);
-//        query.getObjectInBackgroundWithId(video.objectId) {
-//            (scoreAgain: PFObject!, error: NSError!) -> Void in
-//            if !error {
-//                println("error")
-//            } else {
-//                println("success")
-//            }
-//        var video = query.getObjectInBackgroundWithId("MQfB6Lc3lh")
         
         
     }
@@ -54,15 +40,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         var query = PFQuery(className: "Videos")
         
         
-     
-//        for object in objects {
-//            println("found an object")
-//        }
-//        println("hi")
-//        let userVideo = PFObject(className: "Videos")
-//        let userVideoFile = userVideo["video"] as! PFFile
-//        
-//        println(userVideoFile)
     }
   
     /* Table view protocol methods */
