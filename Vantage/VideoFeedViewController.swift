@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class FirstViewController: UIViewController {
+class VideoFeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

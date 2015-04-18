@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ThirdViewController: UIViewController {
+class PlayerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
