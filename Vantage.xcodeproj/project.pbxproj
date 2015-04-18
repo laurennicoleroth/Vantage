@@ -31,6 +31,9 @@
 		09E9D66C1AE2D62400369E06 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D66B1AE2D62400369E06 /* SystemConfiguration.framework */; };
 		09E9D66E1AE2D62D00369E06 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D66D1AE2D62D00369E06 /* libz.dylib */; };
 		09E9D6701AE2D63800369E06 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D66F1AE2D63800369E06 /* libsqlite3.dylib */; };
+		09E9D6721AE2D6FE00369E06 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6711AE2D6FE00369E06 /* DataViewController.swift */; };
+		09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6731AE2D76700369E06 /* ModelController.swift */; };
+		09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6751AE2D7AF00369E06 /* RootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		09E9D66B1AE2D62400369E06 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		09E9D66D1AE2D62D00369E06 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		09E9D66F1AE2D63800369E06 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		09E9D6711AE2D6FE00369E06 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		09E9D6731AE2D76700369E06 /* ModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		09E9D6751AE2D7AF00369E06 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +149,10 @@
 			children = (
 				09E9D65A1AE2D55A00369E06 /* Frameworks */,
 				09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */,
+				09E9D6711AE2D6FE00369E06 /* DataViewController.swift */,
 				09E9D62E1AE2D43D00369E06 /* FirstViewController.swift */,
+				09E9D6731AE2D76700369E06 /* ModelController.swift */,
+				09E9D6751AE2D7AF00369E06 /* RootViewController.swift */,
 				09E9D6301AE2D43D00369E06 /* SecondViewController.swift */,
 				09E9D6321AE2D43D00369E06 /* Main.storyboard */,
 				09E9D6351AE2D43D00369E06 /* Images.xcassets */,
@@ -291,6 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E9D6721AE2D6FE00369E06 /* DataViewController.swift in Sources */,
+				09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */,
+				09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */,
 				09E9D6311AE2D43D00369E06 /* SecondViewController.swift in Sources */,
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* FirstViewController.swift in Sources */,
