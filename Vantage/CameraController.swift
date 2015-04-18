@@ -64,7 +64,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         let videoData = NSData(contentsOfURL: tempImage)
         let videoFile = PFFile(name:"move.mov", data:videoData!)
         
-        let userVideo = PFObject(className: "VideoStorage")
+        let userVideo = PFObject(className: "Videos")
         userVideo["video"] = videoFile
         
         userVideo.saveInBackground()
