@@ -14,6 +14,12 @@
 		09E9D6361AE2D43D00369E06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09E9D6351AE2D43D00369E06 /* Images.xcassets */; };
 		09E9D6391AE2D43D00369E06 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E9D6371AE2D43D00369E06 /* LaunchScreen.xib */; };
 		09E9D6451AE2D43D00369E06 /* VantageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6441AE2D43D00369E06 /* VantageTests.swift */; };
+		09E9D6541AE2D55100369E06 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D64E1AE2D55100369E06 /* Bolts.framework */; };
+		09E9D6551AE2D55100369E06 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D64F1AE2D55100369E06 /* ParseCrashReporting.framework */; };
+		09E9D6561AE2D55100369E06 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D6501AE2D55100369E06 /* ParseUI.framework */; };
+		09E9D6571AE2D55100369E06 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D6511AE2D55100369E06 /* ParseFacebookUtilsV4.framework */; };
+		09E9D6581AE2D55100369E06 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D6521AE2D55100369E06 /* ParseFacebookUtils.framework */; };
+		09E9D6591AE2D55100369E06 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9D6531AE2D55100369E06 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +44,12 @@
 		09E9D63E1AE2D43D00369E06 /* VantageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VantageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9D6431AE2D43D00369E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09E9D6441AE2D43D00369E06 /* VantageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VantageTests.swift; sourceTree = "<group>"; };
+		09E9D64E1AE2D55100369E06 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../Downloads/parse-library-1.7.1 (1)/Bolts.framework"; sourceTree = "<group>"; };
+		09E9D64F1AE2D55100369E06 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../../../Downloads/parse-library-1.7.1 (1)/ParseCrashReporting.framework"; sourceTree = "<group>"; };
+		09E9D6501AE2D55100369E06 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../../Downloads/parse-library-1.7.1 (1)/ParseUI.framework"; sourceTree = "<group>"; };
+		09E9D6511AE2D55100369E06 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../../../Downloads/parse-library-1.7.1 (1)/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		09E9D6521AE2D55100369E06 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../../Downloads/parse-library-1.7.1 (1)/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		09E9D6531AE2D55100369E06 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../Downloads/parse-library-1.7.1 (1)/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +57,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E9D6561AE2D55100369E06 /* ParseUI.framework in Frameworks */,
+				09E9D6541AE2D55100369E06 /* Bolts.framework in Frameworks */,
+				09E9D6571AE2D55100369E06 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				09E9D6581AE2D55100369E06 /* ParseFacebookUtils.framework in Frameworks */,
+				09E9D6591AE2D55100369E06 /* Parse.framework in Frameworks */,
+				09E9D6551AE2D55100369E06 /* ParseCrashReporting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +97,7 @@
 		09E9D6291AE2D43D00369E06 /* Vantage */ = {
 			isa = PBXGroup;
 			children = (
+				09E9D65A1AE2D55A00369E06 /* Frameworks */,
 				09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */,
 				09E9D62E1AE2D43D00369E06 /* FirstViewController.swift */,
 				09E9D6301AE2D43D00369E06 /* SecondViewController.swift */,
@@ -113,6 +132,19 @@
 				09E9D6431AE2D43D00369E06 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		09E9D65A1AE2D55A00369E06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09E9D64E1AE2D55100369E06 /* Bolts.framework */,
+				09E9D64F1AE2D55100369E06 /* ParseCrashReporting.framework */,
+				09E9D6501AE2D55100369E06 /* ParseUI.framework */,
+				09E9D6511AE2D55100369E06 /* ParseFacebookUtilsV4.framework */,
+				09E9D6521AE2D55100369E06 /* ParseFacebookUtils.framework */,
+				09E9D6531AE2D55100369E06 /* Parse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +376,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/apprentice/Downloads/parse-library-1.7.1",
+					"(1)",
+				);
 				INFOPLIST_FILE = Vantage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,6 +391,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/apprentice/Downloads/parse-library-1.7.1",
+					"(1)",
+				);
 				INFOPLIST_FILE = Vantage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
