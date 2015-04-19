@@ -49,15 +49,15 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-//            let onemovie = self.movieArray[11]["video"] as! PFFile
-//            println(onemovie)
-//            let moviedata = onemovie.url
-//            
-//            var videoURL = NSURL(string: moviedata!)!
-//            
-//            let destination = segue.destinationViewController as! AVPlayerViewController
-//            
-//            destination.player = AVPlayer(URL: videoURL)
+            let onemovie = self.movieArray[11]["video"] as! PFFile
+            println(onemovie)
+            let moviedata = onemovie.url
+            
+            var videoURL = NSURL(string: moviedata!)!
+            
+            let destination = segue.destinationViewController as! AVPlayerViewController
+            
+            destination.player = AVPlayer(URL: videoURL)
         
     }
     
@@ -73,6 +73,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let callActionHandler = { (action:UIAlertAction!) -> Void in
                 var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
                 self.presentViewController(vc, animated: true, completion: nil)
+                
             }
             
             let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: callActionHandler)
