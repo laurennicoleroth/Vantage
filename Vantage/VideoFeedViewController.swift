@@ -16,9 +16,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.dataSource = self;
         tableView.delegate = self;
 
@@ -41,22 +43,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
   
-    /* Table view protocol methods */
-
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-            let onemovie = self.movieArray[0]["video"] as! PFFile
-            println(onemovie)
-            let moviedata = onemovie.url
-            
-            var videoURL = NSURL(string: moviedata!)!
-            
-            let destination = segue.destinationViewController as! AVPlayerViewController
-            
-            destination.player = AVPlayer(URL: videoURL)
-            
-    }
     
     func playVideo(videoLink: PFFile){
         
@@ -116,19 +102,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let result = movieArray.count;
-        println("we have \(result) rows")
         return movieArray.count;
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue,
-//        
-//        sender: AnyObject?) {
-//          
-//            let destination = segue.destinationViewController as! AVPlayerViewController
-//            let url = NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")
-//            destination.player = AVPlayer(URL: url)
-//            
-//    }
-
 }
 
