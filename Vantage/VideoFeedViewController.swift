@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import AVFoundation
+import AVKit
 
 class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
@@ -19,15 +21,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self;
         tableView.delegate = self;
 
-
         var video  = PFObject(className: "Videos")
-        println(video)
+        
         var query = PFQuery(className: "Videos")
-        println(query)
         movieArray = query.findObjects()!
         tableView.reloadData();
-        println(movieArray);
-        
         
     }
     
@@ -40,11 +38,25 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     func retrieveVideoFromParse(objects: [PFObject]) {
         var query = PFQuery(className: "Videos")
         
-        
     }
   
     /* Table view protocol methods */
     
+    override func prepareForSegue(segue: UIStoryboardSegue,
+        
+        sender: AnyObject?) {
+        
+            let onemovie = self.movieArray[0]["video"] as! PFFile
+            println(onemovie)
+            let moviedata = onemovie.url
+            
+            var videoURL = NSURL(string: moviedata!)!
+            
+            let destination = segue.destinationViewController as! AVPlayerViewController
+            
+            destination.player = AVPlayer(URL: videoURL)
+            
+    }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -54,11 +66,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var movie = (self.movieArray[indexPath.row]) as! PFObject
-        println(movie.objectId)
-        println(movie)
         cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         return cell!;
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let result = movieArray.count;
         println("we have \(result) rows")
