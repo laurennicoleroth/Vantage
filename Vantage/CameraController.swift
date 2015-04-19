@@ -85,6 +85,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         userVideo["video"] = videoFile
         
         userVideo.saveInBackground()
+        redirectPage()
         
 //        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 //        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! UIViewController
@@ -101,10 +102,8 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     func redirectPage(){
-        let vc = VideoFeedViewController()
-        var navigationController = UINavigationController(rootViewController: vc)
-        println(navigationController)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("camera")as! CameraViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
 //    func transitionToRootView(){

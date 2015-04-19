@@ -121,7 +121,7 @@
         <!--Camera View Controller-->
         <scene sceneID="hr6-PQ-bcN">
             <objects>
-                <viewController id="Mqs-h3-G5g" customClass="CameraViewController" customModule="Vantage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="camera" id="Mqs-h3-G5g" customClass="CameraViewController" customModule="Vantage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x21-Q4-HTg"/>
                         <viewControllerLayoutGuide type="bottom" id="bPs-yB-lRf"/>
@@ -129,6 +129,14 @@
                     <view key="view" contentMode="scaleToFill" id="0o2-P6-Zbw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKD-fr-P5Y">
+                                <rect key="frame" x="199" y="137" width="203" height="30"/>
+                                <state key="normal" title="LAUREN WATCHES DR WHO">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
