@@ -11,16 +11,35 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class PlayerController: UIViewController {
+class PlayerController: AVPlayerViewController {
+    
+    var videoList : [NSURL] = []
+    var timer = UILabel(frame: CGRectMake(30, 30, 60, 60))
+    var currentItemDuration = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        videoGravity = AVLayerVideoGravityResizeAspectFill
+        showsPlaybackControls = false
+        let color = UIColor(red: 1, green: 165/255, blue: 0, alpha: 1)
+        let font = UIFont(name: "Egypt 22", size: 60)
+        self.timer.font = font
+        self.timer.text = ""
+        self.timer.textColor = color
+        self.view.addSubview(timer)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prefersStatusbarHidden() -> Bool {
+        return true
+    }
+    
+    func playVideos() {
+        let items = self.videoList.map({video in AVPlayerItem(URL:video)})
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue,
@@ -35,3 +54,11 @@ class PlayerController: UIViewController {
             
     }
 }
+
+//class QueuLoopVideoPlayer : AVPlayerViewController {
+//    var videoList : [NSURL] = []
+//    var timer = UILabel(frame: CGRectMake(30, 30, 60, 60)
+//    var curretnItemDuration = 0
+//    
+//    override func viewDidLoad()
+//}
