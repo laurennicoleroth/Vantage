@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3rx-K5-RGy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -65,24 +65,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="728" y="-572"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="u9N-2N-k8u">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="JTr-qY-Wel" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="3rx-K5-RGy" kind="show" id="bGE-mS-k9L"/>
-                    </connections>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aSl-lD-ftO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1086" y="-1809"/>
+            <point key="canvasLocation" x="1150" y="-1194"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="ZTc-la-UfI">
             <objects>
-                <viewController id="3rx-K5-RGy" customClass="HomeVC" sceneMemberID="viewController">
+                <viewController id="3rx-K5-RGy" customClass="HomeVC" customModule="Vantage" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tlj-i9-GLq"/>
                         <viewControllerLayoutGuide type="bottom" id="Hjb-aG-dVy"/>
@@ -128,12 +116,12 @@
         <!--Item-->
         <scene sceneID="mlA-PT-Jqa">
             <objects>
-                <viewController id="0sD-VK-3KL" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="0sD-VK-3KL" customClass="LoginViewController" customModule="Vantage" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oUt-Jt-lSA"/>
                         <viewControllerLayoutGuide type="bottom" id="Cu3-xG-odH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="igD-Z6-24G" customClass="LoginView">
+                    <view key="view" contentMode="scaleToFill" id="igD-Z6-24G">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -171,7 +159,6 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginActionButton:" destination="0sD-VK-3KL" eventType="touchUpInside" id="mQk-BM-AsV"/>
                                     <action selector="loginTapped:" destination="0sD-VK-3KL" eventType="touchUpInside" id="Ayp-g6-tTb"/>
                                 </connections>
                             </button>
@@ -192,11 +179,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="rJs-Nh-XWg"/>
                     <connections>
-                        <outlet property="loginInitialLabel" destination="rgf-VC-mAi" id="P4O-RI-jYx"/>
-                        <outlet property="loginPassTextField" destination="ETe-tI-AgW" id="QJg-jo-lTO"/>
-                        <outlet property="loginSavePasswordLabel" destination="h6a-xL-IsF" id="ycH-xM-fsX"/>
-                        <outlet property="loginSavePasswordSwitch" destination="hCA-un-OFY" id="ArK-t2-nnH"/>
-                        <outlet property="loginUserTextField" destination="AUf-d5-sOG" id="AhQ-Fy-AYk"/>
                         <outlet property="txtPassword" destination="ETe-tI-AgW" id="zFI-Y2-uRC"/>
                         <outlet property="txtUsername" destination="AUf-d5-sOG" id="AcX-GO-z1e"/>
                     </connections>
@@ -208,7 +190,7 @@
         <!--SignupVC-->
         <scene sceneID="pFI-zB-00f">
             <objects>
-                <viewController id="POs-BT-3XQ" customClass="SignupVC" customModule="Vantage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="POs-BT-3XQ" customClass="SignupVC" customModule="Vantage" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YlV-WO-G7V"/>
                         <viewControllerLayoutGuide type="bottom" id="kF4-y4-Jra"/>
@@ -334,8 +316,8 @@
         <!--AV Player View Controller-->
         <scene sceneID="7U9-bS-c4K">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qmS-1a-hRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="N9g-eN-0fe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qmS-1a-hRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1443" y="-320"/>
         </scene>
