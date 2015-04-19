@@ -18,39 +18,56 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
     
+
+    
     override func viewDidAppear(animated: Bool) {
         
+            }
+    
+    func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            
-            
-            println("captureVideoPressed and camera available.")
-            
-            var imagePicker = UIImagePickerController()
-            
-            imagePicker.delegate = self
-            imagePicker.sourceType = .Camera;
-            imagePicker.mediaTypes = [kUTTypeMovie!]
-            imagePicker.allowsEditing = false
-            
-            imagePicker.showsCameraControls = true
-            
-            
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-            
+        
+        println("captureVideoPressed and camera available.")
+        
+        var imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera;
+        imagePicker.mediaTypes = [kUTTypeMovie!]
+        imagePicker.allowsEditing = false
+        
+        imagePicker.showsCameraControls = true
+        
+        
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+        navigationController?.popToRootViewControllerAnimated(true)
+        
+    }
+        
+    else {
+        println("Camera not available.")
         }
-            
-        else {
-            println("Camera not available.")
-        }
+
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
+        println("----------->>did we get here??????????????????")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func redirectPage(){
+        println("WILL IT BLEND?!??!?!?!?")
+        let vc = VideoFeedViewController()
+//        navigationController?.popToRootViewControllerAnimated(true)
+        var navigationController = UINavigationController(rootViewController: vc)
+        println(navigationController)
+        self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,7 +93,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         userVideo.saveInBackground()
         
         
-        
         //        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         //        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! UIViewController
         //        self.presentViewController(vc, animated: true, completion: nil)
@@ -84,19 +100,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
         //        self.presentViewController(vc, animated: true, completion: nil)
         
-        
-        
-        println("HEY EVEANANDI. I GOT HERE YOU FOO")
         //        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
         
     }
     
-    func redirectPage(){
-        let vc = VideoFeedViewController()
-        var navigationController = UINavigationController(rootViewController: vc)
-        println(navigationController)
-        self.presentViewController(navigationController, animated: true, completion: nil)
-    }
+
     
     //    func transitionToRootView(){
     //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RootNavigationController") as! UINavigationController

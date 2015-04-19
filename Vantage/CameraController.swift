@@ -22,8 +22,14 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     override func viewDidAppear(animated: Bool) {
         
+
+    }
+    
+    @IBAction func showMeTheCamera(sender: AnyObject) {
+        showCamera()
+    }
+    func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            
             
             println("captureVideoPressed and camera available.")
             
@@ -38,22 +44,19 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
             
             
             self.presentViewController(imagePicker, animated: true, completion: nil)
+            navigationController?.popToRootViewControllerAnimated(true)
             
         }
             
         else {
             println("Camera not available.")
         }
+        
     }
+
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
-        captureSession.stopRunning()
-        println("did we get here")
-        let vc = VideoFeedViewController()
-        var navigationController = UINavigationController(rootViewController: vc)
-        println(navigationController)
-        self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
