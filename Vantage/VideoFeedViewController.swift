@@ -43,10 +43,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     /* Table view protocol methods */
     
     func redirectPage(){
-        let vc = CameraViewController()
-        var navigationController = UINavigationController(rootViewController: vc)
-        println(navigationController)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -62,11 +60,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 //            destination.player = AVPlayer(URL: videoURL)
         
     }
-
-    
-    func playVideo(videoLink: PFFile){
-        
-    }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
@@ -77,8 +70,14 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             // 2
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
-            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: nil)
+            let callActionHandler = { (action:UIAlertAction!) -> Void in
+                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            
+            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: callActionHandler)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
             
             recordMenu.addAction(recordAction)
             recordMenu.addAction(cancelAction)

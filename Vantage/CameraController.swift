@@ -18,13 +18,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
 
-    
-    
-    override func viewDidAppear(animated: Bool) {
         
-
-    }
-    
     @IBAction func showMeTheCamera(sender: AnyObject) {
         showCamera()
     }
@@ -86,23 +80,13 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         userVideo.saveInBackground()
         redirectPage()
-        
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-//        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! UIViewController
-//        self.presentViewController(vc, animated: true, completion: nil)
-        
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
-//        self.presentViewController(vc, animated: true, completion: nil)
-        
-        
-        
-        println("HEY EVEANANDI. I GOT HERE YOU FOO")
+
         //        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
     
     }
     
     func redirectPage(){
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("camera")as! CameraViewController
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
         self.presentViewController(vc, animated: true, completion: nil)
     }
     

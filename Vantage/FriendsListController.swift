@@ -12,7 +12,7 @@ import MobileCoreServices
 import AVFoundation
 import Parse
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+class FriendsListController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
 }
 
