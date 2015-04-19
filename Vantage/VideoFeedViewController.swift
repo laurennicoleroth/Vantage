@@ -42,9 +42,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
   
     /* Table view protocol methods */
     
-    override func prepareForSegue(segue: UIStoryboardSegue,
-        
-        sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
             let onemovie = self.movieArray[0]["video"] as! PFFile
             println(onemovie)
@@ -56,6 +54,46 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             
             destination.player = AVPlayer(URL: videoURL)
             
+    }
+    
+    func playVideo(videoLink: PFFile){
+        
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
+        // 1
+        var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            // 2
+            let recordMenu = UIAlertController(title: nil, message: "RECORD, BITCHES!", preferredStyle: .ActionSheet)
+            
+            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            recordMenu.addAction(twitterAction)
+            recordMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(recordMenu, animated: true, completion: nil)
+        })
+        // 3
+        var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            // 4
+            let playMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .ActionSheet)
+            
+            let appRateAction = UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            playMenu.addAction(appRateAction)
+            playMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(playMenu, animated: true, completion: nil)
+        })
+        // 5
+        return [recordAction,playAction]
     }
     
     
