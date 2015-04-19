@@ -12,48 +12,41 @@ import AVKit
 import AVFoundation
 import Parse
 
-class PlayerController: AVPlayerViewController {
-    
+class QueueLoopVideoPlayer : AVPlayerViewController {
+    var videoList : [NSURL] = []
     var movieArray = []
     var timer = UILabel(frame: CGRectMake(30, 30, 60, 60))
     var currentItemDuration = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         videoGravity = AVLayerVideoGravityResizeAspectFill
-        showsPlaybackControls = false
+        showsPlaybackControls = true
         let color = UIColor(red: 1, green: 165/255, blue: 0, alpha: 1)
         let font = UIFont(name: "Egypt 22", size: 60)
         self.timer.font = font
         self.timer.text = ""
         self.timer.textColor = color
         self.view.addSubview(timer)
+        var video  = PFObject(className: "Videos")
+        var query = PFQuery(className: "Videos")
+        movieArray = query.findObjects()!
+        playVideos()
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     func playVideos() {
-        var movieArray = []
-        var video  = PFObject(className: "Videos")
-        var query = PFQuery(className: "Videos")
-        movieArray = query.findObjects()!
-        let result = movieArray.count;
-        println(result);
-        
-        let onemovie = self.movieArray[0]["video"] as! PFFile
-        println(onemovie)
-        
-//        let moviedata = onemovie.url
-//        
-//        var videoURL = NSURL(string: moviedata!)!
-//        
-//        let destination = segue.destinationViewController as! AVPlayerViewController
-//        
-//        destination.player = AVPlayer(URL: videoURL)
+        println("moopy mc moopster")
+        println(self.movieArray[0])
         
 //        let items = self.movieArray.map({video in AVPlayerItem(URL:video)})
 //        self.player = AVQueuePlayer(items: items) as AVQueuePlayer!

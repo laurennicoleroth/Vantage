@@ -32,6 +32,16 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var movieArray = []
+        var video  = PFObject(className: "Videos")
+        var query = PFQuery(className: "Videos")
+        movieArray = query.findObjects()!
+        let result = movieArray.count;
+        println("result below")
+        println(result);
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

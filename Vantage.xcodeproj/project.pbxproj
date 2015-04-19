@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		093C82091AE4436D00CFDC56 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6771AE2D89000369E06 /* PlayerController.swift */; };
 		09BAD8181AE34C3A0007F9EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8121AE34C3A0007F9EC /* Bolts.framework */; };
 		09BAD8191AE34C3A0007F9EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8131AE34C3A0007F9EC /* Parse.framework */; };
 		09BAD81A1AE34C3A0007F9EC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8141AE34C3A0007F9EC /* ParseCrashReporting.framework */; };
@@ -34,7 +35,6 @@
 		09E9D6721AE2D6FE00369E06 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6711AE2D6FE00369E06 /* DataViewController.swift */; };
 		09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6731AE2D76700369E06 /* ModelController.swift */; };
 		09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6751AE2D7AF00369E06 /* RootViewController.swift */; };
-		09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6771AE2D89000369E06 /* PlayerController.swift */; };
 		09E9D67B1AE2EEB300369E06 /* TestVideoFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */; };
 /* End PBXBuildFile section */
 
@@ -310,8 +310,8 @@
 			files = (
 				09E9D6721AE2D6FE00369E06 /* DataViewController.swift in Sources */,
 				09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */,
+				093C82091AE4436D00CFDC56 /* PlayerController.swift in Sources */,
 				09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */,
-				09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */,
 				09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */,
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */,
