@@ -58,13 +58,15 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         let tempImage = info[UIImagePickerControllerMediaURL] as! NSURL!
+ 
         let pathString = tempImage.relativePath
         self.dismissViewControllerAnimated(true, completion: {})
         
         let videoData = NSData(contentsOfURL: tempImage)
         let videoFile = PFFile(name:"move.mov", data:videoData!)
+        println(videoFile)
         
-        let userVideo = PFObject(className: "VideoStorage")
+        let userVideo = PFObject(className: "Videos")
         userVideo["video"] = videoFile
         
         userVideo.saveInBackground()
