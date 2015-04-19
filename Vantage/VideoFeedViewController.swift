@@ -18,7 +18,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
-        
+
+
         var video  = PFObject(className: "Videos")
         println(video)
         var query = PFQuery(className: "Videos")
