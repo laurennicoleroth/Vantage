@@ -8,13 +8,9 @@
 
 import UIKit
 import Parse
-<<<<<<< HEAD
 import AVKit
 import AVFoundation
-=======
-import AVFoundation
-import AVKit
->>>>>>> queuplayer
+
 
 class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
@@ -46,9 +42,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
   
     /* Table view protocol methods */
-<<<<<<< HEAD
 
-=======
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -103,8 +97,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 5
         return [recordAction,playAction]
     }
-    
->>>>>>> queuplayer
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseIdentifier = "cell"
@@ -113,19 +106,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var movie = (self.movieArray[indexPath.row]) as! PFObject
-<<<<<<< HEAD
-//        println(movie.objectId)
-//        println(movie)
+
         let videoFile = movie.objectForKey("video") as! PFFile
         println(videoFile)
-//        userImageFile.getDataInBackgroundWithBlock {
-//            (imageData: NSData!, error: NSError!) -> Void in
-//            if !error {
-//                let image = UIImage(data:imageData)
-//            }
-//        }
-=======
->>>>>>> queuplayer
+
         cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         return cell!;
     }
@@ -136,15 +120,15 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         return movieArray.count;
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue,
-        
-        sender: AnyObject?) {
-          
-            let destination = segue.destinationViewController as! AVPlayerViewController
-            let url = NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")
-            destination.player = AVPlayer(URL: url)
-            
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue,
+//        
+//        sender: AnyObject?) {
+//          
+//            let destination = segue.destinationViewController as! AVPlayerViewController
+//            let url = NSURL(string: "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")
+//            destination.player = AVPlayer(URL: url)
+//            
+//    }
 
 }
 

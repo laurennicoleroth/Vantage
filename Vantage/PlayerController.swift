@@ -34,9 +34,6 @@ class PlayerController: AVPlayerViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prefersStatusbarHidden() -> Bool {
-        return true
-    }
     
     func playVideos() {
         let items = self.videoList.map({video in AVPlayerItem(URL:video)})
