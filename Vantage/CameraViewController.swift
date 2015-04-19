@@ -12,13 +12,11 @@ import MobileCoreServices
 import AVFoundation
 import Parse
 
-class CameraController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
     let captureSession = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
-
-    
     
     override func viewDidAppear(animated: Bool) {
         
@@ -47,13 +45,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-        captureSession.stopRunning()
-        println("did we get here")
-        let vc = VideoFeedViewController()
-        var navigationController = UINavigationController(rootViewController: vc)
-        println(navigationController)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -70,7 +62,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         let tempImage = info[UIImagePickerControllerMediaURL] as! NSURL!
- 
+        
         let pathString = tempImage.relativePath
         self.dismissViewControllerAnimated(true, completion: {})
         
@@ -83,18 +75,20 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         userVideo.saveInBackground()
         
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-//        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! UIViewController
-//        self.presentViewController(vc, animated: true, completion: nil)
         
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
-//        self.presentViewController(vc, animated: true, completion: nil)
+        
+        //        let mainStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        //        let vc : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! UIViewController
+        //        self.presentViewController(vc, animated: true, completion: nil)
+        
+        //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
+        //        self.presentViewController(vc, animated: true, completion: nil)
         
         
         
         println("HEY EVEANANDI. I GOT HERE YOU FOO")
         //        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
-    
+        
     }
     
     func redirectPage(){
@@ -104,25 +98,25 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
-//    func transitionToRootView(){
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RootNavigationController") as! UINavigationController
-//        presentViewController(vc, animated: false, completion: {
-//            done in
-//            self.dismissPlayerLayer()
-//        })
-//    }
-//    
-//    @IBAction func dismissCamera(sender: AnyObject) {
-//        if let gesture = sender as? UIScreenEdgePanGestureRecognizer {
-//            if gesture.state == .Ended {
-//                transitionToRootView()
-//            }
-//        } else {
-//            transitionToRootView()
-//        }
-//    }
+    //    func transitionToRootView(){
+    //        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RootNavigationController") as! UINavigationController
+    //        presentViewController(vc, animated: false, completion: {
+    //            done in
+    //            self.dismissPlayerLayer()
+    //        })
+    //    }
+    //
+    //    @IBAction func dismissCamera(sender: AnyObject) {
+    //        if let gesture = sender as? UIScreenEdgePanGestureRecognizer {
+    //            if gesture.state == .Ended {
+    //                transitionToRootView()
+    //            }
+    //        } else {
+    //            transitionToRootView()
+    //        }
+    //    }
     
-
+    
     
     func transition(Sender: UIButton!){
         let videoFeedViewController:VideoFeedViewController = VideoFeedViewController()

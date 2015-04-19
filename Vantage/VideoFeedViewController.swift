@@ -42,19 +42,27 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
   
     /* Table view protocol methods */
     
+    func redirectPage(){
+        let vc = CameraViewController()
+        var navigationController = UINavigationController(rootViewController: vc)
+        println(navigationController)
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-            let onemovie = self.movieArray[0]["video"] as! PFFile
-            println(onemovie)
-            let moviedata = onemovie.url
-            
-            var videoURL = NSURL(string: moviedata!)!
-            
-            let destination = segue.destinationViewController as! AVPlayerViewController
-            
-            destination.player = AVPlayer(URL: videoURL)
-            
+//            let onemovie = self.movieArray[11]["video"] as! PFFile
+//            println(onemovie)
+//            let moviedata = onemovie.url
+//            
+//            var videoURL = NSURL(string: moviedata!)!
+//            
+//            let destination = segue.destinationViewController as! AVPlayerViewController
+//            
+//            destination.player = AVPlayer(URL: videoURL)
+        
     }
+
     
     func playVideo(videoLink: PFFile){
         
@@ -67,12 +75,12 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 1
         var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // 2
-            let recordMenu = UIAlertController(title: nil, message: "RECORD, BITCHES!", preferredStyle: .ActionSheet)
+            let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
-            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
+            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: nil)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
-            recordMenu.addAction(twitterAction)
+            recordMenu.addAction(recordAction)
             recordMenu.addAction(cancelAction)
             
             
@@ -81,12 +89,12 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 3
         var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // 4
-            let playMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .ActionSheet)
+            let playMenu = UIAlertController(title: nil, message: "Play!", preferredStyle: .ActionSheet)
             
-            let appRateAction = UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: nil)
+            let playAction = UIAlertAction(title: "Play", style: UIAlertActionStyle.Default, handler: nil)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
-            playMenu.addAction(appRateAction)
+            playMenu.addAction(playAction)
             playMenu.addAction(cancelAction)
             
             
