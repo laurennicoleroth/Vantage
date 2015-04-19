@@ -13,9 +13,32 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     
     var pageViewController: UIPageViewController?
     
+    var pageColors = [String]()
+    var pageTitles = [String]()
+    var pageImages = [String]()
+    
     
     override func viewDidLoad() {
+       
         super.viewDidLoad()
+        
+        pageColors.append("Red")
+        pageColors.append("Green")
+        pageColors.append("Blue")
+        
+        pageTitles.append("Take Videos")
+        pageTitles.append("Play Videos")
+        pageTitles.append("Add Titles")
+        pageTitles.append("Share with Friends")
+        
+        println(pageTitles)
+        
+        
+        let pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor.blackColor()
+        
         // Do any additional setup after loading the view, typically from a nib.
         // Configure the page view controller and add it as a child view controller.
         self.pageViewController = UIPageViewController(transitionStyle: .PageCurl, navigationOrientation: .Horizontal, options: nil)
