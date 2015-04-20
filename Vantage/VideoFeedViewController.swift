@@ -10,12 +10,15 @@ import UIKit
 import Parse
 import AVFoundation
 import AVKit
+import ParseUI
 
-class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
-
+    var cellID : NSString = "";
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self;
@@ -29,6 +32,28 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    override func viewDidAppear(animated: Bool){
+        super.viewDidAppear(animated)
+        checkUser()
+    }
+    
+    func redirectLogin(){
+        self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        self.modalPresentationStyle = .CurrentContext
+        self.presentViewController(LoginVC(), animated:true, completion:nil)
+        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+        //        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    func checkUser() {
+        
+        var currentUser = PFUser.currentUser()
+        if (currentUser == nil){
+            println("do we have a user??")
+            redirectLogin()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,44 +64,47 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         var query = PFQuery(className: "Videos")
         
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var alert = UIAlertView()
-        alert.delegate = self
-        alert.title = "Selected Row"
-        alert.message = "You selected row \(indexPath)"
-        alert.addButtonWithTitle("OK")
-        alert.show()
-    }
-  
-    /* Table view protocol methods */
-    
+
     func redirectPage(){
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
         self.presentViewController(vc, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var queryy = PFQuery(className: "Videos")
+        
+        var movie = (self.movieArray[indexPath.row]) as! PFObject
+        let cell = movie.objectId as? NSString!
+        self.cellID = cell!
+        self.performSegueWithIdentifier("playVideo", sender: nil)
+
+    }
+  
+    /* Table view protocol methods */
     
-//        let onemovie = self.movieArray[0]["video"] as! PFFile
-// 
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        var query = PFQuery(className: "Videos")
+        println(self.cellID)
+        let cell = self.cellID as String!
+        let object = (query.getObjectWithId(cell!))!
+        let video = ((object as PFObject)["video"])!
+        let movie = (video.url!)!
+        let url = NSURL(string: movie)
+        
 //        let moviedata = onemovie.url
-//        
 //        var videoURL = NSURL(string: moviedata!)!
-//        
-//        let onemovie2 = self.movieArray[11]["video"] as! PFFile
-//        let moviedata2 = onemovie2.url
-//        
+        let onemovie2 = self.movieArray[11]["video"] as! PFFile
+//        println(onemovie2)
+        let moviedata2 = onemovie2.url
+        let destination = segue.destinationViewController as! AVPlayerViewController
 //        var videoURL2 = NSURL(string: moviedata2!)!
-//        
-//        let destination = segue.destinationViewController as! AVPlayerViewController
-//
 //        let secondItem = AVPlayerItem(URL: videoURL2)
 //        let firstItem = AVPlayerItem(URL: videoURL)
-//        
 //        var movieList:AnyObject = [firstItem, secondItem]
 //        
-//        destination.player = AVQueuePlayer(items: movieList as! [AnyObject])
+        destination.player = AVQueuePlayer(URL: url)
         
     }
 
@@ -114,21 +142,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             self.presentViewController(recordMenu, animated: true, completion: nil)
         })
         // 3
-        var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            // 4
-            let playMenu = UIAlertController(title: nil, message: "Play!", preferredStyle: .ActionSheet)
-            
-            let playAction = UIAlertAction(title: "Play", style: UIAlertActionStyle.Default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            playMenu.addAction(playAction)
-            playMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(playMenu, animated: true, completion: nil)
-        })
+
         // 5
-        return [recordAction,playAction]
+        return [recordAction]
     }
     
     
@@ -138,7 +154,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
-        var movie = (self.movieArray[indexPath.row]) as! PFObject
+        var movie = (self.movieArray[indexPath.row])
         cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         return cell!;
     }

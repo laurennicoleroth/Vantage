@@ -1,11 +1,3 @@
-//
-//  LoginVC.swift
-//  Vantage
-//
-//  Created by Apprentice on 4/19/15.
-//  Copyright (c) 2015 Apprentice. All rights reserved.
-//
-
 import UIKit
 import Parse
 import ParseUI
@@ -87,8 +79,9 @@ class LoginVC: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewCont
     }
     
     func redirectToDashboard() {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
+//        self.presentViewController(vc, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     @IBAction func logoutAction(sender: AnyObject) {

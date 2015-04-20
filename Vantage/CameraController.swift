@@ -45,15 +45,21 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
         
     }
-
+//    optional func imagePickerControllerDidCancel(picker: UIImagePickerController)
+    
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+                redirectPage()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        showCamera()
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,16 +82,53 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         let userVideo = PFObject(className: "Videos")
         userVideo["video"] = videoFile
         
+        let userCollection = PFObject(className: "Collection")
+        println(userCollection)
+        
+        //        userCollection.setObject(userVideo, forKey: "videos")
+        userCollection.addObject(userVideo, forKey: "videos")
+        println(userCollection)
+        
+        let currentUser = PFUser.currentUser()
+        userVideo["creator"] = currentUser
+        println(currentUser)
+        
+        userCollection.addObject(currentUser!, forKey: "collaborators")
+        println(userCollection)
+        
+        
+        //        userCollection.saveInBackground()
+        
+        //        let userCollectionVideos: AnyObject? = userCollection["videos"]
+        //        println(userCollectionVideos)
+        //        userCollectionVideos.append(videoFile)
+        userCollection.saveInBackgroundWithBlock {
+            (success, error) -> Void in
+            if success {
+                NSLog("Object create with id: (userCollection.objectId")
+            } else {
+                NSLog("We have an error")
+            }
+        }
+        
         userVideo.saveInBackground()
-        redirectPage()
+        redirectFriends()
 
         //        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
     
     }
     
-    func redirectPage(){
+    func redirectFriends(){
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
         self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    func redirectPage(){
+       /* var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+        self.presentViewController(vc, animated: true, completion: nil)*/
+
+        tabBarController!.selectedViewController = tabBarController?.viewControllers!.first as? UIViewController
+        navigationController?.popToRootViewControllerAnimated(true)
     }
 
 }
