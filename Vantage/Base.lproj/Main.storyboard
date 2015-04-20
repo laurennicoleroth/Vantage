@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3rx-K5-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fsM-FV-JLp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -85,49 +85,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-I8-T8t">
-                                <rect key="frame" x="262" y="279" width="49" height="30"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOutTapped:" destination="3rx-K5-RGy" eventType="touchUpInside" id="CHy-fP-SVI"/>
-                                    <action selector="loggedoutTapped:" destination="3rx-K5-RGy" eventType="touchUpInside" id="cQI-Y9-eXP"/>
-                                    <action selector="logoutTapped:" destination="3rx-K5-RGy" eventType="touchUpInside" id="Sac-pQ-A8t"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yS8-cG-OGf">
-                                <rect key="frame" x="262" y="253" width="49" height="30"/>
-                                <state key="normal" title="Signup">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ku-Hb-l0u">
-                                <rect key="frame" x="267" y="223" width="38" height="30"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="login_link:" destination="3rx-K5-RGy" eventType="touchUpInside" id="GKc-sa-SHn"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lL-Ll-7hq">
-                                <rect key="frame" x="267" y="183" width="380" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.77254909279999995" alpha="0.66000000000000003" colorSpace="deviceRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4ay-21-ePI">
+                        <barButtonItem key="leftBarButtonItem" title="logout" id="xSV-Jm-Yhv">
+                            <connections>
+                                <action selector="logOutAction:" destination="3rx-K5-RGy" id="jR5-wm-wdV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="usernameLabel" destination="5lL-Ll-7hq" id="JsP-iN-MHb"/>
                         <segue destination="0sD-VK-3KL" kind="show" identifier="goto_login" id="bdr-kc-uCm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzV-7Y-joa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1794" y="-2308"/>
+            <point key="canvasLocation" x="2192" y="-2658"/>
         </scene>
         <!--Item-->
         <scene sceneID="mlA-PT-Jqa">
@@ -206,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEW-5l-SGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2647" y="-2193"/>
+            <point key="canvasLocation" x="3459" y="-2193"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="pFI-zB-00f">
@@ -351,6 +325,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qmS-1a-hRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1687" y="-260"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0IV-6o-dGj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fsM-FV-JLp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Yt-yC-MZt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3rx-K5-RGy" kind="relationship" relationship="rootViewController" id="dvL-7y-SqV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1uY-9R-aLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1380" y="-2658"/>
         </scene>
     </scenes>
     <resources>
