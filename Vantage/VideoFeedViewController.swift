@@ -110,14 +110,18 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 1
         var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // 2
-            let recordMenu = UIAlertController(title: nil, message: "RECORD, BITCHES!", preferredStyle: .ActionSheet)
+            let recordMenu = UIAlertController(title: nil, message: "Add On!", preferredStyle: .ActionSheet)
             
-            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
+            let callActionHandler = {(action:UIAlertAction!) -> Void in
+                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            
+            let recordAction = IAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: callActionHandler)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
-            recordMenu.addAction(twitterAction)
+            recordMenu.addAction(recordAction)
             recordMenu.addAction(cancelAction)
-            
             
             self.presentViewController(recordMenu, animated: true, completion: nil)
         })
