@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		098968F61AE52E4B0086F2DA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098968F51AE52E4B0086F2DA /* LoginVC.swift */; };
+		098968F81AE5302F0086F2DA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098968F71AE5302F0086F2DA /* Accounts.framework */; };
+		098968FA1AE530360086F2DA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098968F91AE530360086F2DA /* Social.framework */; };
 		09BAD8181AE34C3A0007F9EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8121AE34C3A0007F9EC /* Bolts.framework */; };
 		09BAD8191AE34C3A0007F9EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8131AE34C3A0007F9EC /* Parse.framework */; };
 		09BAD81A1AE34C3A0007F9EC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8141AE34C3A0007F9EC /* ParseCrashReporting.framework */; };
@@ -36,7 +39,6 @@
 		09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6731AE2D76700369E06 /* ModelController.swift */; };
 		09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6751AE2D7AF00369E06 /* RootViewController.swift */; };
 		09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6771AE2D89000369E06 /* PlayerController.swift */; };
-		09E9D67B1AE2EEB300369E06 /* TestVideoFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		098968F51AE52E4B0086F2DA /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		098968F71AE5302F0086F2DA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		098968F91AE530360086F2DA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		09BAD8121AE34C3A0007F9EC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../Downloads/parse-library-1.7.1/Bolts.framework"; sourceTree = "<group>"; };
 		09BAD8131AE34C3A0007F9EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../Downloads/parse-library-1.7.1/Parse.framework"; sourceTree = "<group>"; };
 		09BAD8141AE34C3A0007F9EC /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../../../Downloads/parse-library-1.7.1/ParseCrashReporting.framework"; sourceTree = "<group>"; };
@@ -83,7 +88,6 @@
 		09E9D6731AE2D76700369E06 /* ModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		09E9D6751AE2D7AF00369E06 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		09E9D6771AE2D89000369E06 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
-		09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVideoFeedController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				098968FA1AE530360086F2DA /* Social.framework in Frameworks */,
+				098968F81AE5302F0086F2DA /* Accounts.framework in Frameworks */,
 				09E9D6701AE2D63800369E06 /* libsqlite3.dylib in Frameworks */,
 				09E9D66E1AE2D62D00369E06 /* libz.dylib in Frameworks */,
 				09E9D66C1AE2D62400369E06 /* SystemConfiguration.framework in Frameworks */,
@@ -163,7 +169,7 @@
 				09BAD85D1AE43E7A0007F9EC /* FriendsListController.swift */,
 				09E9D6771AE2D89000369E06 /* PlayerController.swift */,
 				09E9D6321AE2D43D00369E06 /* Main.storyboard */,
-				09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */,
+				098968F51AE52E4B0086F2DA /* LoginVC.swift */,
 				09E9D6351AE2D43D00369E06 /* Images.xcassets */,
 				09E9D6371AE2D43D00369E06 /* LaunchScreen.xib */,
 				09E9D62A1AE2D43D00369E06 /* Supporting Files */,
@@ -199,6 +205,8 @@
 		09E9D65A1AE2D55A00369E06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				098968F91AE530360086F2DA /* Social.framework */,
+				098968F71AE5302F0086F2DA /* Accounts.framework */,
 				09BAD8121AE34C3A0007F9EC /* Bolts.framework */,
 				09BAD8131AE34C3A0007F9EC /* Parse.framework */,
 				09BAD8141AE34C3A0007F9EC /* ParseCrashReporting.framework */,
@@ -315,10 +323,10 @@
 				09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */,
 				09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */,
 				09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */,
+				098968F61AE52E4B0086F2DA /* LoginVC.swift in Sources */,
 				09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */,
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */,
-				09E9D67B1AE2EEB300369E06 /* TestVideoFeedController.swift in Sources */,
 				09BAD85E1AE43E7A0007F9EC /* FriendsListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

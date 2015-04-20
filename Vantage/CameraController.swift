@@ -33,9 +33,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
             imagePicker.sourceType = .Camera;
             imagePicker.mediaTypes = [kUTTypeMovie!]
             imagePicker.allowsEditing = false
-            
             imagePicker.showsCameraControls = true
-            
             
             self.presentViewController(imagePicker, animated: true, completion: nil)
             navigationController?.popToRootViewControllerAnimated(true)
@@ -89,32 +87,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
         self.presentViewController(vc, animated: true, completion: nil)
     }
-    
-//    func transitionToRootView(){
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RootNavigationController") as! UINavigationController
-//        presentViewController(vc, animated: false, completion: {
-//            done in
-//            self.dismissPlayerLayer()
-//        })
-//    }
-//    
-//    @IBAction func dismissCamera(sender: AnyObject) {
-//        if let gesture = sender as? UIScreenEdgePanGestureRecognizer {
-//            if gesture.state == .Ended {
-//                transitionToRootView()
-//            }
-//        } else {
-//            transitionToRootView()
-//        }
-//    }
-    
 
-    
-    func transition(Sender: UIButton!){
-        let videoFeedViewController:VideoFeedViewController = VideoFeedViewController()
-        
-        self.presentViewController(videoFeedViewController, animated: true, completion: nil)
-    }
 }
 
 
