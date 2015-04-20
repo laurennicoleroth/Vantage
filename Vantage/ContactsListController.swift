@@ -1,64 +1,8 @@
-////
-////  SecondViewController.swift
-////  Vantage
-////
-////  Created by Apprentice on 4/18/15.
-////  Copyright (c) 2015 Apprentice. All rights reserved.
-////
 //
-//import UIKit
-//import MediaPlayer
-//import MobileCoreServices
-//import AVFoundation
-//import Parse
-//
-//class FriendsListController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-//    
-//    override func viewDidAppear(animated:Bool) {
-//        super.viewDidAppear(animated)
-////        tableView.dataSource = self;
-////        tableView.delegate = self;
-//        
-//        var users = PFObject(className: "User")
-//        var query = PFQuery(className: "User")
-//        var friendsList = query.findObjects()
-//        
-//        println(friendsList)
-//        
-////            if let results = query.valueForKey("username") {
-////                for user in results {
-////                println("Mooooooooooooooooopy**************************")
-////                println(user)
-////                println("Mooooooooooooooooopy**************************")
-////            }
-////        }
-//        
-////        for element: PFObject? in friendsList
-////        {
-////            let friend = (element["username"] as! PFString)
-////            println(friend)
-////        }
-//        
-//        
-//        
-//        println(query)
-////        let friends = query.findObjects()!
-////        println(friends)
-////        println("**************************")
-//    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        println("hellllllllooooooo")
-//    }
-//
-//}
-
-//
-//  FirstViewController.swift
+//  ContactsListController.swift
 //  Vantage
 //
-//  Created by Apprentice on 4/18/15.
+//  Created by Apprentice on 4/20/15.
 //  Copyright (c) 2015 Apprentice. All rights reserved.
 //
 
@@ -67,9 +11,9 @@ import Parse
 import AVFoundation
 import AVKit
 
-class FriendsListController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class ContactsListController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
-    @IBOutlet weak var tableView: UITableView!
+    
     var userArray = [];
     
     override func viewDidLoad() {
@@ -108,10 +52,10 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     /* Table view protocol methods */
     
     func redirectPage(){
-//        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
-//        self.presentViewController(vc, animated: true, completion: nil)
+        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+        //        self.presentViewController(vc, animated: true, completion: nil)
     }
-
+    
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
@@ -123,8 +67,8 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-//                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList") as! FriendsListController
-//                self.presentViewController(vc, animated: true, completion: nil)
+                //                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList") as! FriendsListController
+                //                self.presentViewController(vc, animated: true, completion: nil)
                 
             }
             
@@ -183,5 +127,4 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
 }
-
 
