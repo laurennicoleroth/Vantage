@@ -99,43 +99,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
-    
-//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
-//        // 1
-//        var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-//            // 2
-//            let recordMenu = UIAlertController(title: nil, message: "Add On!", preferredStyle: .ActionSheet)
-//            
-//            let callActionHandler = { (action:UIAlertAction!) -> Void in
-//                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("videoList")as! QueueLoopVideoPlayer
-//                self.presentViewController(vc, animated: true, completion: nil)
-//            }
-//            
-//            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: nil)
-//            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-//            
-//            recordMenu.addAction(recordAction)
-//            recordMenu.addAction(cancelAction)
-//            
-//            self.presentViewController(recordMenu, animated: true, completion: nil)
-//        })
-//        // 3
-//        var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-//            // 4
-//            let playMenu = UIAlertController(title: nil, message: "Play!", preferredStyle: .ActionSheet)
-//            
-//              let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: callActionHandler)
-//            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-//            
-//            playMenu.addAction(playAction)
-//            playMenu.addAction(cancelAction)
-//            
-//            
-//            self.presentViewController(playMenu, animated: true, completion: nil)
-//        })
-//        // 5
-//        return [recordAction,playAction]
-//    }
+
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
         
