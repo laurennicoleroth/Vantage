@@ -131,8 +131,8 @@
         <!--AV Player View Controller-->
         <scene sceneID="7U9-bS-c4K">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qmS-1a-hRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="N9g-eN-0fe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qmS-1a-hRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1443" y="-320"/>
         </scene>
