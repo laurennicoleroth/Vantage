@@ -69,7 +69,8 @@ import AVKit
 
 class FriendsListController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
-    @IBOutlet weak var tableView: UITableView!
+
+    
     var userArray = [];
     
     override func viewDidLoad() {
@@ -77,11 +78,11 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self;
         tableView.delegate = self;
         
-        var video  = PFObject(className: "User")
-        var query = PFQuery(className: "User")
-        userArray = query.findObjects()!
-        tableView.reloadData();
-        
+        if let users = PFUser.query() {
+            userArray = users.findObjects()!
+            println(userArray)
+            tableView.reloadData();
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,8 +124,8 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList") as! FriendsListController
-                self.presentViewController(vc, animated: true, completion: nil)
+//                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList") as! FriendsListController
+//                self.presentViewController(vc, animated: true, completion: nil)
                 
             }
             
@@ -172,7 +173,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var user = (self.userArray[indexPath.row]) as! PFObject
-        cell?.textLabel?.text = user.objectId // user["objectId"] as! String
+        cell?.textLabel?.text = (user["username"] as! String)
         return cell!;
     }
     
