@@ -1,4 +1,4 @@
-//
+ //
 //  FirstViewController.swift
 //  Vantage
 //
@@ -89,7 +89,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         println(self.cellID)
         let cell = self.cellID as String!
         let object = (query.getObjectWithId(cell!))!
-        let video = ((object as PFObject)["video"])!
+        let video: AnyObject = ((object as PFObject)["video"])!
         let movie = (video.url!)!
         let url = NSURL(string: movie)
         
@@ -154,7 +154,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
-        var movie = (self.movieArray[indexPath.row])
+        var movie: (AnyObject) = (self.movieArray[indexPath.row])
         cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         return cell!;
     }
