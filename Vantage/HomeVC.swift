@@ -26,7 +26,6 @@ class HomeVC: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewContr
         PFUser.logOut()
         var currentUser = PFUser.currentUser() //should now be nil
         self.redirectToLogin()
-
     }
     
     override func viewDidLoad() {
@@ -79,7 +78,7 @@ class HomeVC: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewContr
         
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
-        if (isLoggedIn != 10) {
+        if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
             self.usernameLabel.text = prefs.valueForKey("USERNAME") as! NSString as String
