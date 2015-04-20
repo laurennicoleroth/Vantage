@@ -8,15 +8,20 @@
 
 import Foundation
 import UIKit
+import Parse
 
 class SignupVC: UIViewController{
     
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.hidden = true
+        activityIndicator.hidesWhenStopped = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -24,131 +29,104 @@ class SignupVC: UIViewController{
     }
     
     @IBAction func signupTapped(sender: AnyObject) {
+        // Build the terms and conditions alert
+        let alertController = UIAlertController(title: "Agree to terms and conditions",
+            message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
         
+        alertController.addAction(UIAlertAction(title: "I AGREE",
+            style: UIAlertActionStyle.Default,
+            handler: { alertController in self.processSignUp()})
+        )
+        
+        alertController.addAction(UIAlertAction(title: "I do NOT agree",
+            style: UIAlertActionStyle.Default,
+            handler: nil)
+        )
+        
+        // Display alert
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func processSignUp(){
+    
         var username:NSString = txtUsername.text as NSString
         var password:NSString = txtPassword.text as NSString
         var confirm_password:NSString = txtConfirmPassword.text as NSString
+        var email:NSString = txtEmail.text as NSString
         
-        if ( username.isEqualToString("") || password.isEqualToString("") ) {
-            
-            var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign Up Failed!"
-            alertView.message = "Please enter Username and Password"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
+        // Start activity indicator
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
+        
+        if ( username.isEqualToString("") || password.isEqualToString("") || confirm_password.isEqualToString("") || email.isEqualToString("") ) {
+
+            //ensure username, password, email fields aren't left blank
+            var alert = UIAlertView(title: "Invalid", message: "Username must be greater then 4 and Password must be greater then 5", delegate: self, cancelButtonTitle: "OK")
+            alert.show()
+
         } else if ( !password.isEqual(confirm_password) ) {
-            
+
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Passwords doesn't Match"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
+            
+            // must add email validation
+            // } else if !( email.notValidEmail ) {
+            //  validation should be done by parse
+            //
+            
         } else {
-            var post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)"
+            self.activityIndicator.startAnimating()
+            // Create the user
             
-            NSLog("PostData: %@",post);
+            var user = PFUser()
+            user.username = username as String
+            user.password = password as String
+            user.email = email as String
             
-            var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonsignup.php")!
-            
-            var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
-            
-            var postLength:NSString = String( postData.length )
-            
-            var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
-            request.HTTPBody = postData
-            request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            
-            
-            var reponseError: NSError?
-            var response: NSURLResponse?
-            
-            var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
-            
-            if ( urlData != nil ) {
-                let res = response as! NSHTTPURLResponse!;
-                
-                NSLog("Response code: %ld", res.statusCode);
-                
-                if (res.statusCode >= 200 && res.statusCode < 300)
-                {
-                    var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
-                    
-                    NSLog("Response ==> %@", responseData);
-                    
-                    var error: NSError?
-                    
-                    let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
-                    
-                    
-                    let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
-                    
-                    //[jsonData[@"success"] integerValue];
-                    
-                    NSLog("Success: %ld", success);
-                    
-                    if(success == 1)
-                    {
-                        NSLog("Sign Up SUCCESS");
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } else {
-                        var error_msg:NSString
-                        
-                        if jsonData["error_message"] as? NSString != nil {
-                            error_msg = jsonData["error_message"] as! NSString
-                        } else {
-                            error_msg = "Unknown Error"
-                        }
-                        var alertView:UIAlertView = UIAlertView()
-                        alertView.title = "Sign Up Failed!"
-                        alertView.message = error_msg as String
-                        alertView.delegate = self
-                        alertView.addButtonWithTitle("OK")
-                        alertView.show()
-                        
-                    }
-                    
+            user.signUpInBackgroundWithBlock{
+                (succeeded: Bool, error: NSError?) -> Void in
+                if (error == nil) {
+                    self.activityIndicator.stopAnimating()
+                    //redirect to Login page or Logged user in
+                    self.redirectToLogin()
                 } else {
+                    self.activityIndicator.stopAnimating()
+//                    let error_msg = error!.userInfo["error"] as! NSString
+
                     var alertView:UIAlertView = UIAlertView()
+                
                     alertView.title = "Sign Up Failed!"
-                    alertView.message = "Connection Failed"
+//                    alertView.message = error_msg as String
                     alertView.delegate = self
                     alertView.addButtonWithTitle("OK")
                     alertView.show()
                 }
-            }  else {
-                var alertView:UIAlertView = UIAlertView()
-                alertView.title = "Sign in Failed!"
-                alertView.message = "Connection Failure"
-                if let error = reponseError {
-                    alertView.message = (error.localizedDescription)
-                }
-                alertView.delegate = self
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
             }
         }
-        
-        
-        
-        
     }
+    
+//    func switchScreen() {
+//        println("REDIRECT ME TO LOGIN!!!")
+//        let vc = self.storyboard!.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+//        self.navigationController!.pushViewController(vc, animated: true)
+//    }
+    
+    
+    
+    func redirectToLogin() {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginView") as! LoginViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+
     
     @IBAction func gotoLogin(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
