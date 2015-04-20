@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		093D77FF1AE488B7002EB476 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D77FE1AE488B7002EB476 /* Accounts.framework */; };
 		093D78011AE48E25002EB476 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093D78001AE48E25002EB476 /* Social.framework */; };
+		093D78061AE49FE1002EB476 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093D78051AE49FE1002EB476 /* LoginVC.swift */; };
 		09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */; };
 		09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D62E1AE2D43D00369E06 /* VideoFeedViewController.swift */; };
 		09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6301AE2D43D00369E06 /* CameraController.swift */; };
@@ -38,9 +39,6 @@
 		2382ED981AE331DD003A9DFC /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2382ED921AE331DD003A9DFC /* ParseFacebookUtils.framework */; };
 		2382ED991AE331DD003A9DFC /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2382ED931AE331DD003A9DFC /* ParseFacebookUtilsV4.framework */; };
 		2382ED9A1AE331DD003A9DFC /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2382ED941AE331DD003A9DFC /* ParseUI.framework */; };
-		2382ED9F1AE3336C003A9DFC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2382ED9E1AE3336C003A9DFC /* LoginViewController.swift */; };
-		2382EDA21AE34A80003A9DFC /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2382EDA11AE34A80003A9DFC /* SignupVC.swift */; };
-		2382EDA41AE3511D003A9DFC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2382EDA31AE3511D003A9DFC /* HomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +54,7 @@
 /* Begin PBXFileReference section */
 		093D77FE1AE488B7002EB476 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		093D78001AE48E25002EB476 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		093D78051AE49FE1002EB476 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		09E9D6271AE2D43D00369E06 /* Vantage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vantage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9D62B1AE2D43D00369E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,9 +88,6 @@
 		2382ED921AE331DD003A9DFC /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		2382ED931AE331DD003A9DFC /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		2382ED941AE331DD003A9DFC /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		2382ED9E1AE3336C003A9DFC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2382EDA11AE34A80003A9DFC /* SignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
-		2382EDA31AE3511D003A9DFC /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +160,6 @@
 		09E9D6291AE2D43D00369E06 /* Vantage */ = {
 			isa = PBXGroup;
 			children = (
-				2382EDA01AE34A5F003A9DFC /* UserAuth */,
 				09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */,
 				09E9D6711AE2D6FE00369E06 /* DataViewController.swift */,
 				09E9D62E1AE2D43D00369E06 /* VideoFeedViewController.swift */,
@@ -173,6 +168,7 @@
 				09E9D6301AE2D43D00369E06 /* CameraController.swift */,
 				09E9D6771AE2D89000369E06 /* PlayerController.swift */,
 				09E9D6321AE2D43D00369E06 /* Main.storyboard */,
+				093D78051AE49FE1002EB476 /* LoginVC.swift */,
 				09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */,
 				09E9D6351AE2D43D00369E06 /* Images.xcassets */,
 				09E9D6371AE2D43D00369E06 /* LaunchScreen.xib */,
@@ -220,16 +216,6 @@
 			);
 			name = Frameworks;
 			path = Vantage;
-			sourceTree = "<group>";
-		};
-		2382EDA01AE34A5F003A9DFC /* UserAuth */ = {
-			isa = PBXGroup;
-			children = (
-				2382EDA31AE3511D003A9DFC /* HomeVC.swift */,
-				2382EDA11AE34A80003A9DFC /* SignupVC.swift */,
-				2382ED9E1AE3336C003A9DFC /* LoginViewController.swift */,
-			);
-			name = UserAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,12 +320,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09E9D6721AE2D6FE00369E06 /* DataViewController.swift in Sources */,
-				2382EDA41AE3511D003A9DFC /* HomeVC.swift in Sources */,
+				093D78061AE49FE1002EB476 /* LoginVC.swift in Sources */,
 				09E9D6741AE2D76700369E06 /* ModelController.swift in Sources */,
 				09E9D6761AE2D7AF00369E06 /* RootViewController.swift in Sources */,
-				2382EDA21AE34A80003A9DFC /* SignupVC.swift in Sources */,
 				09E9D6781AE2D89000369E06 /* PlayerController.swift in Sources */,
-				2382ED9F1AE3336C003A9DFC /* LoginViewController.swift in Sources */,
 				09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */,
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */,
