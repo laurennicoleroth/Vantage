@@ -49,15 +49,36 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-            let onemovie = self.movieArray[11]["video"] as! PFFile
-            println(onemovie)
-            let moviedata = onemovie.url
-            
-            var videoURL = NSURL(string: moviedata!)!
-            
-            let destination = segue.destinationViewController as! AVPlayerViewController
-            
-            destination.player = AVPlayer(URL: videoURL)
+        let onemovie = self.movieArray[0]["video"] as! PFFile
+ 
+        let moviedata = onemovie.url
+        
+        var videoURL = NSURL(string: moviedata!)!
+        
+        let onemovie2 = self.movieArray[11]["video"] as! PFFile
+        let moviedata2 = onemovie2.url
+        
+        var videoURL2 = NSURL(string: moviedata2!)!
+        
+        let destination = segue.destinationViewController as! AVPlayerViewController
+        
+        let secondItem = AVPlayerItem(URL: videoURL2)
+        let firstItem = AVPlayerItem(URL: videoURL)
+        
+        var movieList:AnyObject = [firstItem, secondItem]
+        
+        destination.player = AVQueuePlayer(items: movieList as! [AnyObject])
+        
+        //        queuePlayer = [AVQueuePlayer queuePlayerWithItems:[NSArray arrayWithObjects:firstVideoItem, secondVideoItem,nil]];
+        
+        //        var firstItem = AVPlayerItem(playerItemWithURL: videoURL)
+        //        var secondItem = AVPlayerItem(playerItemWithURL: videoURL2)
+        //
+        ////        AVPlayerItem *firstItem = [AVPlayerItem, playerItemWithURL: firstItemURL];
+        ////        AVPlayerItem *secondItem = [AVPlayerItem playerItemWithURL: secondItemURL];
+        //
+        //        AVQueuePlayer *player = [AVQueuePlayer queuePlayerWithItems:[NSArray arrayWithObjects:firstItem, secondItem, nil]];
+        
         
     }
     
