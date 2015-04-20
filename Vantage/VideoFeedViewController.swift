@@ -32,14 +32,59 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        var movieArray = []
+//        var video  = PFObject(className: "Videos")
+//        var query = PFQuery(className: "Videos")
+//        movieArray = query.findObjects()!
+//        let result = movieArray.count;
+//        println("result below")
+//        println(result);
+//    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var movieArray = []
-        var video  = PFObject(className: "Videos")
-        var query = PFQuery(className: "Videos")
-        movieArray = query.findObjects()!
-        let result = movieArray.count;
-        println("result below")
-        println(result);
+        
+        var movieList : [NSURL] = []
+        
+        let onemovie = self.movieArray[0]["video"] as! PFFile
+        
+        println(onemovie)
+        
+        let moviedata = onemovie.url
+        
+        
+        var videoURL = NSURL(string: moviedata!)!
+        
+        
+        
+        let onemovie2 = self.movieArray[11]["video"] as! PFFile
+        
+        let moviedata2 = onemovie2.url
+        
+        
+        var videoURL2 = NSURL(string: moviedata2!)!
+        
+        movieList.append(videoURL)
+        
+        movieList.append(videoURL2)
+        
+        
+        let destination = segue.destinationViewController as! AVPlayerViewController
+
+        
+        let secondItem = AVPlayerItem(URL: videoURL2)
+        
+        let firstItem = AVPlayerItem(URL: videoURL)
+
+        
+        println(firstItem)
+
+        var movieThing:AnyObject = [firstItem, secondItem]
+
+        destination.player = AVQueuePlayer(items: movieThing as! [AnyObject])
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,8 +148,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         var movie = (self.movieArray[indexPath.row]) as! PFObject
 
-        let videoFile = movie.objectForKey("video") as! PFFile
-        println(videoFile)
+        let videoFileUrl = (movie.objectForKey("video") as! PFFile).url
+        println(videoFileUrl)
 
         cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         return cell!;

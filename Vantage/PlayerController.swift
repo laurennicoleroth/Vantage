@@ -59,29 +59,10 @@ class QueueLoopVideoPlayer : AVPlayerViewController {
         }
         
         let items = self.videoList.map({video in AVPlayerItem(URL:video)})
-        println(items)
-        self.player = AVQueuePlayer(items: items) as AVQueuePlayer!
- 
-//
-//        let items = movieUrls.map({video in AVPlayerItem(URL:video)})
-//        
-//        let firstVideo = items[0]
-//     
-//        println(firstVideo)
 
-//        AVQueuePlayer(items: items) as AVQueuePlayer!
-//        
-//        var f=CGRectMake(0, 0, 500, 500)
-//        var url=NSURL(string: "http://s3.amazonaws.com/vids4project/sample.mp4")
-//        var playerItem = AVPlayerItem(URL: url)
-//        
-//        var v = UIView(frame:f)
-//        var player=AVPlayer(playerItem: playerItem)
-//        var playerLayer=AVPlayerLayer(player: player)
-//        
-//        playerLayer.frame=f
-//        v.layer.addSublayer(playerLayer)
-//        player.play()
+        println(items)
+
+        self.player = AVQueuePlayer(items: items) as AVQueuePlayer!
 
 //        let duration = Int(round(CMTimeGetSeconds(items.first!.asset.duration)))
 //        self.currentItemDuration = duration
