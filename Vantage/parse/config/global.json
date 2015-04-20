@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "Vantage": {
+      "applicationId": "WBn97RGreYL7ObCfSaZlgMv2boXk4xkyI5Lz6Hce",
+      "masterKey": "cLlVlaAOmU9Fp1WX5tk44knZeIWpy5BPfZMxPsr9"
+    },
+    "_default": {
+      "link": "Vantage"
+    }
+  }
+}

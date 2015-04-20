@@ -17,11 +17,13 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     let captureSession = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
-    
-    override func viewDidAppear(animated: Bool) {
+
         
+    @IBAction func showMeTheCamera(sender: AnyObject) {
+        showCamera()
+    }
+    func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            
             
             println("captureVideoPressed and camera available.")
             
@@ -31,17 +33,22 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
             imagePicker.sourceType = .Camera;
             imagePicker.mediaTypes = [kUTTypeMovie!]
             imagePicker.allowsEditing = false
-            
             imagePicker.showsCameraControls = true
             
-            
             self.presentViewController(imagePicker, animated: true, completion: nil)
+            navigationController?.popToRootViewControllerAnimated(true)
             
         }
             
         else {
             println("Camera not available.")
         }
+        
+    }
+
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -67,14 +74,52 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         println(videoFile)
         
         let userVideo = PFObject(className: "Videos")
+        
         userVideo["video"] = videoFile
         
+        let userCollection = PFObject(className: "Collection")
+        println(userCollection)
+        
+//        userCollection.setObject(userVideo, forKey: "videos")
+        userCollection.addObject(userVideo, forKey: "videos")
+        println(userCollection)
+        
+        let currentUser = PFUser.currentUser()
+        println(currentUser)
+        
+        userCollection.addObject(currentUser!, forKey: "collaborators")
+        println(userCollection)
+        
+        
+//        userCollection.saveInBackground()
+        
+//        let userCollectionVideos: AnyObject? = userCollection["videos"]
+//        println(userCollectionVideos)
+//        userCollectionVideos.append(videoFile)
+        userCollection.saveInBackgroundWithBlock {
+         (success, error) -> Void in
+            if success {
+                NSLog("Object create with id: (userCollection.objectId")
+         } else {
+                NSLog("We have an error")
+         }
+        }
+        
+       
+        //userCollection["collaborators"] += currentUser
+        
         userVideo.saveInBackground()
-        
-        
+        redirectPage()
+
         //        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
-        
+    
     }
+    
+    func redirectPage(){
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+
 }
 
 

@@ -39,27 +39,47 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         var query = PFQuery(className: "Videos")
         
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var alert = UIAlertView()
+        alert.delegate = self
+        alert.title = "Selected Row"
+        alert.message = "You selected row \(indexPath)"
+        alert.addButtonWithTitle("OK")
+        alert.show()
+    }
   
     /* Table view protocol methods */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-            let onemovie = self.movieArray[0]["video"] as! PFFile
-            println(onemovie)
-            let moviedata = onemovie.url
-            
-            var videoURL = NSURL(string: moviedata!)!
-            
-            let destination = segue.destinationViewController as! AVPlayerViewController
-            
-            destination.player = AVPlayer(URL: videoURL)
-            
+    func redirectPage(){
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
-    func playVideo(videoLink: PFFile){
-        
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
+//        let onemovie = self.movieArray[0]["video"] as! PFFile
+// 
+//        let moviedata = onemovie.url
+//        
+//        var videoURL = NSURL(string: moviedata!)!
+//        
+//        let onemovie2 = self.movieArray[11]["video"] as! PFFile
+//        let moviedata2 = onemovie2.url
+//        
+//        var videoURL2 = NSURL(string: moviedata2!)!
+//        
+//        let destination = segue.destinationViewController as! AVPlayerViewController
+//
+//        let secondItem = AVPlayerItem(URL: videoURL2)
+//        let firstItem = AVPlayerItem(URL: videoURL)
+//        
+//        var movieList:AnyObject = [firstItem, secondItem]
+//        
+//        destination.player = AVQueuePlayer(items: movieList as! [AnyObject])
+        
+//    }
+
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
@@ -67,12 +87,27 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 1
         var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // 2
-            let recordMenu = UIAlertController(title: nil, message: "RECORD, BITCHES!", preferredStyle: .ActionSheet)
+            let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
-            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
+            let callActionHandler = { (action:UIAlertAction!) -> Void in
+                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+                self.presentViewController(vc, animated: true, completion: nil)
+                
+            }
+            
+            let callActionHandlerr = { (action:UIAlertAction!) -> Void in
+                let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alertMessage, animated: true, completion: nil)
+            }
+            
+            let selectedIndexPath = tableView.indexPathForSelectedRow()
+            
+            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in println(selectedIndexPath)})
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
-            recordMenu.addAction(twitterAction)
+            
+            recordMenu.addAction(recordAction)
             recordMenu.addAction(cancelAction)
             
             
@@ -81,12 +116,12 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 3
         var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // 4
-            let playMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .ActionSheet)
+            let playMenu = UIAlertController(title: nil, message: "Play!", preferredStyle: .ActionSheet)
             
-            let appRateAction = UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: nil)
+            let playAction = UIAlertAction(title: "Play", style: UIAlertActionStyle.Default, handler: nil)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
-            playMenu.addAction(appRateAction)
+            playMenu.addAction(playAction)
             playMenu.addAction(cancelAction)
             
             
@@ -109,8 +144,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let result = movieArray.count;
-        println("we have \(result) rows")
+//        let result = movieArray.count;
+//        println("we have \(result) rows")
         return movieArray.count;
     }
 
