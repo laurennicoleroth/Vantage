@@ -20,12 +20,27 @@ class LoginVC: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewCont
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.loginSetUp()
-        self.redirectToDashboard()
+        self.checkUser()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func redirectLogin(){
+        println("what about now?")
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("CameraController") as! CameraController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    func checkUser() {
+        println("HI THERE!")
+        var currentUser = PFUser.currentUser()
+        if !(currentUser == nil){
+            println("do we have a user??")
+            redirectLogin()
+        }
     }
     
     
