@@ -38,12 +38,15 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func redirectLogin(){
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        self.modalPresentationStyle = .CurrentContext
+        self.presentViewController(LoginVC(), animated:true, completion:nil)
+        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+        //        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     func checkUser() {
-        println("HI THERE!")
+        
         var currentUser = PFUser.currentUser()
         if (currentUser == nil){
             println("do we have a user??")
@@ -74,17 +77,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = movie.objectId as? NSString!
         self.cellID = cell!
         self.performSegueWithIdentifier("playVideo", sender: nil)
-//        let cell2 = cell as? String
-//        self.cellID = queryy.getObjectInBackgroundWithId(cell2!)
-//        println(video)
-//            var printMe = "hello world"
-//            var alert = UIAlertView()
-//            alert.delegate = self
-//            alert.title = "Selected Row"
-//            alert.message = "You selected row \(cell)"
-//            alert.addButtonWithTitle("OK")
-//            alert.show()
-//            return printMe
+
     }
   
     /* Table view protocol methods */
@@ -149,21 +142,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             self.presentViewController(recordMenu, animated: true, completion: nil)
         })
         // 3
-        var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            // 4
-            let playMenu = UIAlertController(title: nil, message: "Play!", preferredStyle: .ActionSheet)
-            
-            let playAction = UIAlertAction(title: "Play", style: UIAlertActionStyle.Default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            playMenu.addAction(playAction)
-            playMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(playMenu, animated: true, completion: nil)
-        })
+
         // 5
-        return [recordAction,playAction]
+        return [recordAction]
     }
     
     

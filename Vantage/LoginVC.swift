@@ -1,11 +1,3 @@
-//
-//  LoginVC.swift
-//  Vantage
-//
-//  Created by Apprentice on 4/19/15.
-//  Copyright (c) 2015 Apprentice. All rights reserved.
-//
-
 import UIKit
 import Parse
 import ParseUI
@@ -20,27 +12,12 @@ class LoginVC: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewCont
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.loginSetUp()
-        self.checkUser()
+        self.redirectToDashboard()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func redirectLogin(){
-        println("what about now?")
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("CameraController") as! CameraController
-        self.presentViewController(vc, animated: true, completion: nil)
-    }
-    
-    func checkUser() {
-        println("HI THERE!")
-        var currentUser = PFUser.currentUser()
-        if !(currentUser == nil){
-            println("do we have a user??")
-            redirectLogin()
-        }
     }
     
     
@@ -102,8 +79,9 @@ class LoginVC: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewCont
     }
     
     func redirectToDashboard() {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("VideoFeedViewController") as! VideoFeedViewController
+//        self.presentViewController(vc, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     @IBAction func logoutAction(sender: AnyObject) {
