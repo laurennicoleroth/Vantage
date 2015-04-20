@@ -119,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		093C820A1AE4680B00CFDC56 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				09E9D6771AE2D89000369E06 /* PlayerController.swift */,
+			);
+			name = Playback;
+			sourceTree = "<group>";
+		};
 		09E9D61E1AE2D43D00369E06 = {
 			isa = PBXGroup;
 			children = (
@@ -158,7 +166,7 @@
 				09E9D6731AE2D76700369E06 /* ModelController.swift */,
 				09E9D6751AE2D7AF00369E06 /* RootViewController.swift */,
 				09E9D6301AE2D43D00369E06 /* CameraController.swift */,
-				09E9D6771AE2D89000369E06 /* PlayerController.swift */,
+				093C820A1AE4680B00CFDC56 /* Playback */,
 				09E9D6321AE2D43D00369E06 /* Main.storyboard */,
 				09E9D67A1AE2EEB300369E06 /* TestVideoFeedController.swift */,
 				09E9D6351AE2D43D00369E06 /* Images.xcassets */,
