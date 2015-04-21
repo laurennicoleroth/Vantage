@@ -71,18 +71,32 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     var userArray = [];
-    var collectionObject: NSObject = "";
+    var collectionObject: NSArray = []
+    var arrayTest = NSArray()
     
+    var holderArray : NSArray = []
     override func viewDidLoad() {
+        println("***********This is the teststring: ")
+        println(arrayTest)
+        println("A LONG TIME AGO.. WE USED TO BE FRIENDS")
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
+        unpackArray()
         
         if let users = PFUser.query() {
             userArray = users.findObjects()!
             println(userArray)
             tableView.reloadData();
         }
+    }
+    
+    func unpackArray(){
+        println("this is before!")
+        println(arrayTest)
+        println("I LOVE EVERYONE!")
+        let item = (((arrayTest[0])["collaborators"])!)!
+        println(item)
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,8 +113,6 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var user = (self.userArray[indexPath.row]) as! PFObject
-        println("This is the user object?:")
-        println(user)
         
         var alert = UIAlertView()
         alert.delegate = self

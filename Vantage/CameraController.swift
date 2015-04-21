@@ -92,6 +92,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         let currentUser = PFUser.currentUser()
         userVideo["creator"] = currentUser
+//        userVideo["creator"]
         println(currentUser)
         
         userCollection.addObject(currentUser!, forKey: "collaborators")
@@ -100,7 +101,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         userCollection.saveInBackgroundWithBlock {
             (success, error) -> Void in
             if success {
-                NSLog("Object create with id: (userCollection.objectId")
+                NSLog("Object create with id: (userCollection.objectId)")
             } else {
                 NSLog("We have an error")
             }
@@ -109,21 +110,30 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         userVideo.saveInBackground()
 
         self.collectionTransfer = userCollection as NSObject
-        
-        self.holder = self.collectionTransfer
+
 
 //        redirectFriends()
+            redirect()
         
-        self.performSegueWithIdentifier("transfer", sender: self)
     
+    }
+    
+    func redirect(){
+        self.performSegueWithIdentifier("sendFriends", sender: self)
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("GOT TO OVERRIDE FUNCTION")
+        println("**********************************This is the self.holder:")
+        println(self.holder)
+        println("\(object_getClassName(self.holder))");
+        let arrayTest = [self.collectionTransfer] as NSArray
         var DestViewController : FriendsListController = segue.destinationViewController as! FriendsListController
+//        var testString = "HEHE!"
+//        DestViewController.collectionObject = self.holder
+        DestViewController.arrayTest = arrayTest
         
-        DestViewController.collectionObject = self.holder
+        
         
     }
     
