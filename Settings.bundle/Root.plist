@@ -5,12 +5,20 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>keep_logged_in</string>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Keep Me Logged In</string>
+			<string>Vantage will log you out on restart</string>
+			<key>Key</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>log_out</string>
+			<key>Title</key>
+			<string>Log Out On Restart</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

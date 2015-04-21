@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = NSUserDefaults.standardUserDefaults()
         
-        //prefs.registerDefaults(["keep_logged_in" : true])
+        prefs.registerDefaults(["log_out" : false])
         
     
         
@@ -37,16 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         
-        //let keepLoggedIn = prefs.boolForKey("keep_logged_in")
-        //println("prefs.keep_logged_in=\(keepLoggedIn)")
-        /*
-        if !prefs.boolForKey("keep_logged_in") {
+        
+        if prefs.boolForKey("log_out") {
             println("logging out user")
-            //PFUser.logOut()
+            PFUser.logOut()
+            prefs.setBool(false, forKey: "log_out")
         }
-        */
-        
-        
         
         return true
        
