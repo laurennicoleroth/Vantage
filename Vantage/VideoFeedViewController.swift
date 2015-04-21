@@ -41,8 +41,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
         self.modalPresentationStyle = .CurrentContext
         self.presentViewController(LoginVC(), animated:true, completion:nil)
-        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-        //        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     func checkUser() {
@@ -71,7 +69,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var queryy = PFQuery(className: "Videos")
+        var query = PFQuery(className: "Videos")
         
         var movie = (self.movieArray[indexPath.row]) as! PFObject
         let cell = movie.objectId as? NSString!
