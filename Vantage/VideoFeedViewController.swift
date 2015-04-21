@@ -16,6 +16,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
+    var userArray = [];
     var cellID : NSString = "";
     var collectionsArray = [];
     var collectionObject : NSArray = []
@@ -27,14 +28,28 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self;
 
         var video  = PFObject(className: "Videos")
-        var videoCollections = PFObject(className: "Collection")
+        
+        if let currentUser = PFUser.currentUser() {
+            println(currentUser)
+            var videoCollections = PFObject(className: "Collection")
+//            println(videoCollections)
+            
+            var collectionQuery = PFQuery(className: "Collection")
+            collectionQuery.whereKey("collaborators", equalTo:currentUser)
+            println(collectionQuery)
+            var object = collectionQuery.getFirstObject()
+//            let usersVideos = (object!)["videos"]
 
-        var query = PFQuery(className: "Videos")
-        var collectionQuery = PFQuery(className: "Collection")
+//            let videosArray = (usersVideos!)
+//            println(usersVideos)
 
-        movieArray = query.findObjects()!
-        collectionsArray = collectionQuery.findObjects()!
-        tableView.reloadData();
+
+
+            var query = PFQuery(className: "Videos")
+
+            collectionsArray = collectionQuery.findObjects()!
+            tableView.reloadData();
+        }
     }
 
     override func viewDidAppear(animated: Bool){
@@ -49,7 +64,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func checkUser() {
-
         var currentUser = PFUser.currentUser()
         if (currentUser == nil){
             println("do we have a user??")
@@ -64,11 +78,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func retrieveVideoFromParse(objects: [PFObject]) {
         var query = PFQuery(className: "Videos")
-
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var movie = (self.movieArray[indexPath.row]) as! PFObject
+//        var movie = (self.movieArray[indexPath.row]) as! PFObject
         var collection = (self.collectionsArray[indexPath.row]) as! PFObject
         let cell = collection.objectId as? NSString!
         self.cellID = cell!
@@ -77,6 +90,14 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     /* Table view protocol methods */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //Get current user
+        //        var selectedFriend = (self.userArray[indexPath.row]) as! PFObject
+//        let collaboratorsArray = ((currentCollection[0]["collaborators"])!)!
+//        collaboratorsArray.addObject(selectedFriend)
+        //Find collections that include currentUser in their collaborators array
+        
+        
+        
         var videoQuery = (PFQuery(className:"Collection"))
         let collectionID = self.cellID as String!
 
@@ -127,7 +148,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
 
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-                var collectionObject = (self.movieArray[indexPath.row]) as! NSArray
+                var collectionObject = (self.collectionsArray[indexPath.row]) as! NSArray
                 println(collectionObject)
             }
 
@@ -172,7 +193,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieArray.count;
+        return collectionsArray.count;
     }
 
 }
