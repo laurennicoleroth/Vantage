@@ -76,24 +76,30 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         let pathString = tempImage.relativePath
         self.dismissViewControllerAnimated(true, completion: {})
         
+        //Create Video By Current User - Video Table
         let videoData = NSData(contentsOfURL: tempImage)
         let videoFile = PFFile(name:"move.mov", data:videoData!)
-        println(videoFile)
-        
         let userVideo = PFObject(className: "Videos")
         userVideo["video"] = videoFile
         
-        let userCollection = PFObject(className: "Collection")
-        println(userCollection)
-        
-
-        userCollection.addObject(userVideo, forKey: "videos")
-        println(userCollection)
-        
+        //Save to User Table
         let currentUser = PFUser.currentUser()
-        userVideo["creator"] = currentUser
-//        userVideo["creator"]
         println(currentUser)
+        userVideo["creator"] = currentUser
+        let userTable = PFObject(className: "User")
+        
+        //Save to Collection Table on Parse - Collection Table
+        //Get collection table
+        let userCollection = PFObject(className: "Collection")
+        //Add uservideo object to Collection Table
+        userCollection.addObject(userVideo, forKey: "videos")
+        
+        //Add collection object to the Collection pointer column on User "table"
+        let currentUserID = (currentUser!.objectId)!
+        println("#######################currentuserID")
+        println(currentUserID)
+         println("#######################userCollection")
+        println(userCollection)
         
         userCollection.addObject(currentUser!, forKey: "collaborators")
         println(userCollection)
