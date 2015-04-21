@@ -65,10 +65,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
 
-    func redirectPage(){
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
-        self.presentViewController(vc, animated: true, completion: nil)
-    }
+//    func redirectPage(){
+//        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+//        self.presentViewController(vc, animated: true, completion: nil)
+//    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var queryy = PFQuery(className: "Videos")
@@ -131,7 +131,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             
             let selectedIndexPath = tableView.indexPathForSelectedRow()
             
-            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in println(selectedIndexPath)})
+            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: callActionHandler)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
             

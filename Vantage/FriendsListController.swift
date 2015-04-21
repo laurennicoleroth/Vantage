@@ -70,6 +70,12 @@ import AVKit
 class FriendsListController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var tableView: UITableView!
+   
+    @IBAction func backHome(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     var userArray = [];
     
     override func viewDidLoad() {
