@@ -67,11 +67,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
 
-    func retrieveVideoFromParse(objects: [PFObject]) {
-        var query = PFQuery(className: "Videos")
-        
-    }
-
     func redirectPage(){
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
         self.presentViewController(vc, animated: true, completion: nil)
