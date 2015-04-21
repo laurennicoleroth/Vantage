@@ -18,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //let prefs = NSUserDefaults.standardUserDefaults()
+        
+        //prefs.registerDefaults(["keep_logged_in" : true])
+        
+    
+        
+        
         // Override point for customization after application launch.
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -30,7 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         
+        //let keepLoggedIn = prefs.boolForKey("keep_logged_in")
+        //println("prefs.keep_logged_in=\(keepLoggedIn)")
+        /*
+        if !prefs.boolForKey("keep_logged_in") {
+            println("logging out user")
+            //PFUser.logOut()
+        }
+        */
+        
+        
+        
         return true
+       
 
     }
 
