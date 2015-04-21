@@ -68,12 +68,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        var query = PFQuery(className: "Videos")
         
         var movie = (self.movieArray[indexPath.row]) as! PFObject
         var collection = (self.collectionsArray[indexPath.row]) as! PFObject
-        println("#####################################")
-        println(collection.objectId)
         let cell = collection.objectId as? NSString!
         self.cellID = cell!
         self.performSegueWithIdentifier("playVideo", sender: nil)
@@ -81,8 +78,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
   
     /* Table view protocol methods */
-    
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         var videoQuery = (PFQuery(className:"Collection"))
