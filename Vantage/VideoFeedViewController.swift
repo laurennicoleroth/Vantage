@@ -33,7 +33,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
         movieArray = query.findObjects()!
         collectionsArray = collectionQuery.findObjects()!
-        println(collectionsArray[0])
         
         tableView.reloadData();
         
@@ -48,22 +47,18 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
         self.modalPresentationStyle = .CurrentContext
         self.presentViewController(LoginVC(), animated:true, completion:nil)
-        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-        //        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     func checkUser() {
         
         var currentUser = PFUser.currentUser()
         if (currentUser == nil){
-            println("do we have a user??")
             redirectLogin()
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -73,10 +68,13 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var queryy = PFQuery(className: "Videos")
+//        var query = PFQuery(className: "Videos")
         
         var movie = (self.movieArray[indexPath.row]) as! PFObject
-        let cell = movie.objectId as? NSString!
+        var collection = (self.collectionsArray[indexPath.row]) as! PFObject
+        println("#####################################")
+        println(collection.objectId)
+        let cell = collection.objectId as? NSString!
         self.cellID = cell!
         self.performSegueWithIdentifier("playVideo", sender: nil)
 
@@ -157,7 +155,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var movie = (self.movieArray[indexPath.row])
-        cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
+        var collection = (self.collectionsArray[indexPath.row])
+//        cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
+        cell?.textLabel?.text = collection.objectId
         return cell!;
     }
     
