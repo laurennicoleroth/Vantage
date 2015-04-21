@@ -164,14 +164,15 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let reuseIdentifier = "cell"
         var cell:UITableViewCell? = self.tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
-        var collection = (self.collectionsArray[indexPath.row])
-        cell?.textLabel?.text = collection.objectId
+        if indexPath.row < self.collectionsArray.count {
+            var collection = (self.collectionsArray[indexPath.row])
+            cell?.textLabel?.text = collection.objectId
+        }
         return cell!
     }
     

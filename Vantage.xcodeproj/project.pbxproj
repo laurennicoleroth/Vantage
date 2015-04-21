@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		095B39861AE703D10070E19E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 095B39851AE703D10070E19E /* Settings.bundle */; };
 		098968F61AE52E4B0086F2DA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098968F51AE52E4B0086F2DA /* LoginVC.swift */; };
 		098968F81AE5302F0086F2DA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098968F71AE5302F0086F2DA /* Accounts.framework */; };
 		098968FA1AE530360086F2DA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098968F91AE530360086F2DA /* Social.framework */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		095B39851AE703D10070E19E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		098968F51AE52E4B0086F2DA /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		098968F71AE5302F0086F2DA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		098968F91AE530360086F2DA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -160,6 +162,7 @@
 		09E9D6291AE2D43D00369E06 /* Vantage */ = {
 			isa = PBXGroup;
 			children = (
+				095B39851AE703D10070E19E /* Settings.bundle */,
 				2382EDA01AE34A5F003A9DFC /* UserAuth */,
 				09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */,
 				09E9D6711AE2D6FE00369E06 /* DataViewController.swift */,
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				095B39861AE703D10070E19E /* Settings.bundle in Resources */,
 				09E9D6341AE2D43D00369E06 /* Main.storyboard in Resources */,
 				09E9D6391AE2D43D00369E06 /* LaunchScreen.xib in Resources */,
 				09E9D6361AE2D43D00369E06 /* Images.xcassets in Resources */,
