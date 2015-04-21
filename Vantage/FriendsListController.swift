@@ -72,6 +72,9 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
    
     @IBAction func backHome(sender: AnyObject) {
+        // redirects you home. maintains tabs
+        println("why arent we going back????")
+        //navigationController!.showViewController(VideoFeedViewController(), sender: self)
         dismissViewControllerAnimated(true, completion: nil)
     }
     

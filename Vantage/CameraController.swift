@@ -18,10 +18,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
 
-        
-    @IBAction func showMeTheCamera(sender: AnyObject) {
-        showCamera()
-    }
     func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             

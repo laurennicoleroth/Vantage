@@ -64,6 +64,7 @@
                     <connections>
                         <outlet property="tableView" destination="RoM-d0-rGp" id="PI8-5h-GGj"/>
                         <segue destination="VEJ-HZ-VnN" kind="show" identifier="playVideo" id="E3d-u0-yhV"/>
+                        <segue destination="8rJ-Kc-sve" kind="presentation" identifier="addVideo" id="TiE-Eo-n7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -260,4 +261,7 @@
         <image name="Image" width="40" height="40"/>
         <image name="brows" width="60" height="65"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="TiE-Eo-n7b"/>
+    </inferredMetricsTieBreakers>
 </document>

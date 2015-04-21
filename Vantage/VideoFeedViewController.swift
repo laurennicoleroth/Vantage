@@ -85,6 +85,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        
+        if(cellID != ""){
         var query = PFQuery(className: "Videos")
         println(self.cellID)
         let cell = self.cellID as String!
@@ -105,6 +107,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 //        var movieList:AnyObject = [firstItem, secondItem]
 //        
         destination.player = AVQueuePlayer(URL: url)
+        }
         
     }
 
@@ -118,8 +121,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
-                self.presentViewController(vc, animated: true, completion: nil)
+                self.performSegueWithIdentifier("addVideo", sender: self)
+//                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("CameraController")as! CameraController
+//                self.presentViewController(vc, animated: true, completion: nil)
                 
             }
             
@@ -145,6 +149,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
         // 5
         return [recordAction]
+    }
+    
+    func newRecording(){
+        self.performSegueWithIdentifier("addVideo", sender: self)
     }
     
     
