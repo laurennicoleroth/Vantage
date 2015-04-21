@@ -17,6 +17,8 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     let captureSession = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
+    var collectionTransfer: NSObject = "";
+    var holder: NSObject = "";
 
         
     @IBAction func showMeTheCamera(sender: AnyObject) {
@@ -45,7 +47,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
         
     }
-//    optional func imagePickerControllerDidCancel(picker: UIImagePickerController)
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -85,7 +86,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         let userCollection = PFObject(className: "Collection")
         println(userCollection)
         
-        //        userCollection.setObject(userVideo, forKey: "videos")
+
         userCollection.addObject(userVideo, forKey: "videos")
         println(userCollection)
         
@@ -96,12 +97,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         userCollection.addObject(currentUser!, forKey: "collaborators")
         println(userCollection)
         
-        
-        //        userCollection.saveInBackground()
-        
-        //        let userCollectionVideos: AnyObject? = userCollection["videos"]
-        //        println(userCollectionVideos)
-        //        userCollectionVideos.append(videoFile)
         userCollection.saveInBackgroundWithBlock {
             (success, error) -> Void in
             if success {
@@ -112,21 +107,42 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
         
         userVideo.saveInBackground()
-        redirectFriends()
 
-        //        UISaveVideoAtPathToSavedPhotosAlbum(pathString, self, nil, nil)
+        self.collectionTransfer = userCollection as NSObject
+        
+        self.holder = self.collectionTransfer
+
+//        redirectFriends()
+        
+        self.performSegueWithIdentifier("transfer", sender: self)
     
     }
     
-    func redirectFriends(){
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
-        self.presentViewController(vc, animated: true, completion: nil)
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("GOT TO OVERRIDE FUNCTION")
+        var DestViewController : FriendsListController = segue.destinationViewController as! FriendsListController
+        
+        DestViewController.collectionObject = self.holder
+        
     }
+    
+   
+    
+//    func redirectFriends(){
+//        println("*************THIS IS THE SELF.COLLECTIONTRANSFER:************")
+//        println(self.collectionTransfer)
+//        
+//        self.performSegueWithIdentifier("transfer", sender: self)
+////
+////        
+////        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+////        self.presentViewController(vc, animated: true, completion: nil)
+//    }
+    
+    
     
     func redirectPage(){
-       /* var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
-        self.presentViewController(vc, animated: true, completion: nil)*/
-
         tabBarController!.selectedViewController = tabBarController?.viewControllers!.first as? UIViewController
         navigationController?.popToRootViewControllerAnimated(true)
     }

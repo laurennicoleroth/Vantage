@@ -71,6 +71,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     var userArray = [];
+    var collectionObject: NSObject = "";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,12 +98,18 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var user = (self.userArray[indexPath.row]) as! PFObject
+        println("This is the user object?:")
+        println(user)
+        
         var alert = UIAlertView()
         alert.delegate = self
         alert.title = "Selected Row"
-        alert.message = "You selected row \(indexPath)"
+        alert.message = "You selected row \(user)"
         alert.addButtonWithTitle("OK")
         alert.show()
+        
+        
     }
     
     /* Table view protocol methods */
