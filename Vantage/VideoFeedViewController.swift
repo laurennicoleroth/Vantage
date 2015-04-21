@@ -1,4 +1,4 @@
- //
+//
 //  FirstViewController.swift
 //  Vantage
 //
@@ -16,6 +16,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
+    var collectionsArray = [];
     var cellID : NSString = "";
     
     
@@ -25,9 +26,15 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self;
 
         var video  = PFObject(className: "Videos")
+        var videoCollections = PFObject(className: "Collection")
         
         var query = PFQuery(className: "Videos")
+        var collectionQuery = PFQuery(className: "Collection")
+        
         movieArray = query.findObjects()!
+        collectionsArray = collectionQuery.findObjects()!
+        println(collectionsArray[0])
+        
         tableView.reloadData();
         
     }
@@ -89,7 +96,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         println(self.cellID)
         let cell = self.cellID as String!
         let object = (query.getObjectWithId(cell!))!
-        let video: AnyObject = ((object as PFObject)["video"])!
+        let video = ((object as PFObject)["video"])!
         let movie = (video.url!)!
         let url = NSURL(string: movie)
         
@@ -154,7 +161,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
-        var movie: (AnyObject) = (self.movieArray[indexPath.row])
+        var movie = (self.movieArray[indexPath.row])
         cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         return cell!;
     }
