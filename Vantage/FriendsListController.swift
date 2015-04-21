@@ -69,19 +69,36 @@ import AVKit
 
 class FriendsListController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
-    @IBOutlet weak var tableView: UITableView!
     var userArray = [];
+    var collectionObject: NSArray = []
+    var currentCollection = NSArray()
+    var holderArray : NSArray = []
+    
+    @IBOutlet weak var tableView: UITableView!
+   
+    @IBAction func backHome(sender: AnyObject) {
+        // redirects you home. maintains tabs
+        println("why arent we going back????")
+        //navigationController!.showViewController(VideoFeedViewController(), sender: self)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
+        unpackArray()
         
         if let users = PFUser.query() {
             userArray = users.findObjects()!
             println(userArray)
             tableView.reloadData();
         }
+    }
+    
+    func unpackArray(){
+        let item = (((currentCollection[0])["collaborators"])!)!
+        let originator = item[0]
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,6 +114,11 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var selectedFriend = (self.userArray[indexPath.row]) as! PFObject
+        let collaboratorsArray = ((currentCollection[0]["collaborators"])!)!
+        collaboratorsArray.addObject(selectedFriend)
+        
         var alert = UIAlertView()
         alert.delegate = self
         alert.title = "Selected Row"
@@ -166,7 +188,6 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("HEY. WE GOT IN THE TABLE VIEW FOR CELL")
         let reuseIdentifier = "cell"
         var cell:UITableViewCell? = self.tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
         if(cell == nil) {
