@@ -133,6 +133,9 @@
                     <tabBarItem key="tabBarItem" title="" image="Image" id="cPa-gy-q4n">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
+                    <connections>
+                        <segue destination="Mqs-h3-G5g" kind="presentation" identifier="sendFriends" id="KmS-1f-tDh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -263,5 +266,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TiE-Eo-n7b"/>
+        <segue reference="KmS-1f-tDh"/>
     </inferredMetricsTieBreakers>
 </document>
