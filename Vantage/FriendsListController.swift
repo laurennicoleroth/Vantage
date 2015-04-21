@@ -72,13 +72,13 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     var userArray = [];
     var collectionObject: NSArray = []
-    var arrayTest = NSArray()
+    var currentCollection = NSArray()
     
     var holderArray : NSArray = []
     override func viewDidLoad() {
-        println("***********This is the teststring: ")
-        println(arrayTest)
-        println("A LONG TIME AGO.. WE USED TO BE FRIENDS")
+//        println("***********This is the teststring: ")
+        println(currentCollection)
+//        println("A LONG TIME AGO.. WE USED TO BE FRIENDS")
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
@@ -92,11 +92,14 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func unpackArray(){
-        println("this is before!")
-        println(arrayTest)
-        println("I LOVE EVERYONE!")
-        let item = (((arrayTest[0])["collaborators"])!)!
+//        println("******************this is Array Test!*******************")
+//        println(currentCollection)
+        let item = (((currentCollection[0])["collaborators"])!)!
+        println("THIS IS THE ITEM*************")
         println(item)
+        let originator = item[0]
+        println("Here we have the person who started this collection")
+        println(originator)
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,12 +115,24 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var user = (self.userArray[indexPath.row]) as! PFObject
+        var selectedFriend = (self.userArray[indexPath.row]) as! PFObject
+        println("This is the selected friend from friendslist view")
+        println(selectedFriend)
+//        var item = (((currentCollection[0])["collaborators"])!)!
+        println("This is what the hell currentCollection is")
+        let collaboratorsArray = ((currentCollection[0]["collaborators"])!)!
+        println(collaboratorsArray[0])
+        collaboratorsArray.addObject(selectedFriend)
+        println("#############################")
+        println(collaboratorsArray)
+//        let userCollection = PFObject(className: "Collection")
+//        //Add uservideo object to Collection Table
+//        userCollection.addObject(userVideo, forKey: "videos")
         
         var alert = UIAlertView()
         alert.delegate = self
         alert.title = "Selected Row"
-        alert.message = "You selected row \(user)"
+        alert.message = "You selected row \(selectedFriend)"
         alert.addButtonWithTitle("OK")
         alert.show()
         

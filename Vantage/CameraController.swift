@@ -96,10 +96,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         //Add collection object to the Collection pointer column on User "table"
         let currentUserID = (currentUser!.objectId)!
-        println("#######################currentuserID")
-        println(currentUserID)
-         println("#######################userCollection")
-        println(userCollection)
         
         userCollection.addObject(currentUser!, forKey: "collaborators")
         println(userCollection)
@@ -130,14 +126,14 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("**********************************This is the self.holder:")
-        println(self.holder)
-        println("\(object_getClassName(self.holder))");
-        let arrayTest = [self.collectionTransfer] as NSArray
+//        println("**********************************This is the self.holder:")
+//        println(self.holder)
+//        println("\(object_getClassName(self.holder))");
+        let currentCollection = [self.collectionTransfer] as NSArray
         var DestViewController : FriendsListController = segue.destinationViewController as! FriendsListController
 //        var testString = "HEHE!"
 //        DestViewController.collectionObject = self.holder
-        DestViewController.arrayTest = arrayTest
+        DestViewController.currentCollection = currentCollection
         
         
         
