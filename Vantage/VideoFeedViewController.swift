@@ -85,25 +85,19 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        var query = PFQuery(className: "Videos")
-        println(self.cellID)
-        let cell = self.cellID as String!
-        let object = (query.getObjectWithId(cell!))!
-        let video = ((object as PFObject)["video"])!
-        let movie = (video.url!)!
-        let url = NSURL(string: movie)
+        var videoQuery = (PFQuery(className:"Collection"))
+        let collectionID = self.cellID as String!
         
-//        let moviedata = onemovie.url
-//        var videoURL = NSURL(string: moviedata!)!
-        let onemovie2 = self.movieArray[11]["video"] as! PFFile
-//        println(onemovie2)
-        let moviedata2 = onemovie2.url
+        let oneObject = (videoQuery.getObjectWithId(collectionID!))!
+        
+        let unPack = (oneObject["videos"])!
+        //loop here for all files. I think there might be more later....
+        let firstVideoFile = (unPack[0]["video"]!)!
+        let videoUrl = (firstVideoFile.url!)!
+        let url = NSURL(string: videoUrl)
+
         let destination = segue.destinationViewController as! AVPlayerViewController
-//        var videoURL2 = NSURL(string: moviedata2!)!
-//        let secondItem = AVPlayerItem(URL: videoURL2)
-//        let firstItem = AVPlayerItem(URL: videoURL)
-//        var movieList:AnyObject = [firstItem, secondItem]
-//        
+      
         destination.player = AVQueuePlayer(URL: url)
         
     }
@@ -154,9 +148,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
-        var movie = (self.movieArray[indexPath.row])
         var collection = (self.collectionsArray[indexPath.row])
-//        cell?.textLabel?.text = movie.objectId // movie["objectId"] as! String
         cell?.textLabel?.text = collection.objectId
         return cell!;
     }
