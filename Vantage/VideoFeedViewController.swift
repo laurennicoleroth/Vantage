@@ -188,11 +188,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if indexPath.row < self.collectionsArray.count {
             var collection = (self.collectionsArray[indexPath.row])
             var image : UIImage? = UIImage( named: "brows.pdf")
-//            cell?.backgroundColor = UIColor.orangeColor()
-//            cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell?.imageView?.image = image
             cell?.textLabel?.text = collection.objectId
-            cell?.backgroundColor = UIColorFromRGB(0xFFECDB);
+            cell?.backgroundColor = UIColorFromRGB(0xFFE5B7);
             let gradient = CAGradientLayer()
             cell?.backgroundView = UIView()
             cell?.backgroundView?.layer.insertSublayer(gradient, atIndex: 0)

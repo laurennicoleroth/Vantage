@@ -2,8 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "face.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
@@ -12,13 +11,11 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "face2-1.png"
+      "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode",
-    "template-rendering-intent" : "original"
+    "author" : "xcode"
   }
 }

@@ -2,8 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "IMG_5590-2.PNG"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
@@ -12,13 +11,11 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "IMG_5590-1-1.PNG"
+      "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode",
-    "template-rendering-intent" : "original"
+    "author" : "xcode"
   }
 }
