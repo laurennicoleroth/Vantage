@@ -29,6 +29,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self;
         
         var video  = PFObject(className: "Videos")
+        
         var videoCollections = PFObject(className: "Collection")
         
         var query = PFQuery(className: "Videos")
