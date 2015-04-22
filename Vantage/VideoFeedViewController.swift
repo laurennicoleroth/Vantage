@@ -196,6 +196,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseIdentifier = "cell"
+        let image = UIImage(named:"playbutton")
         var cell:UITableViewCell? = self.tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
@@ -208,6 +209,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             formatter.timeStyle = .ShortStyle
             let dateString = formatter.stringFromDate(returnedDate)
             cell?.textLabel?.text = dateString
+            cell?.imageView?.image = image
             }
         return cell!
     }
