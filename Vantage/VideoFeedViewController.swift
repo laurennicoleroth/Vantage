@@ -178,6 +178,22 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         self.performSegueWithIdentifier("addVideo", sender: self)
     }
     
+    func collaboratorNamesForCell(cellObjectId:String) -> Array<String> {
+        var result :[String] = []
+        let query = (PFQuery(className:"Collection"))
+        let oneObject = (query.getObjectWithId(cellObjectId))!
+        let unPack = (oneObject["collaborators"])!
+        for index in 0..<unPack.count{
+            let userObjectId = (((unPack[index].objectId!)!))
+            let userQuery = PFQuery(className: "_User")
+            let userObject = userQuery.getObjectWithId(userObjectId)
+            let un = userObject!["username"]
+            result.append(un as! String)
+        }
+        return result
+        
+    }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseIdentifier = "cell"
@@ -187,9 +203,14 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         if indexPath.row < self.collectionsArray.count {
             var collection = (self.collectionsArray[indexPath.row])
+            let collabs = collaboratorNamesForCell(collection.objectId!! as String)
+            var username = "Unknown"
+            if(collabs.count > 0) {
+                username = collabs[0]
+            }
             var image : UIImage? = UIImage( named: "brows.pdf")
             cell?.imageView?.image = image
-            cell?.textLabel?.text = collection.objectId
+            cell?.textLabel?.text = username
             cell?.backgroundColor = UIColorFromRGB(0xFFE5B7);
             let gradient = CAGradientLayer()
             cell?.backgroundView = UIView()
