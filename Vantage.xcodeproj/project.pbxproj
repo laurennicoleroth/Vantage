@@ -18,6 +18,7 @@
 		09D3BE6C1AE539EB0084164F /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8151AE34C3A0007F9EC /* ParseFacebookUtils.framework */; };
 		09D3BE6D1AE539EB0084164F /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8161AE34C3A0007F9EC /* ParseFacebookUtilsV4.framework */; };
 		09D3BE6E1AE539EB0084164F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8171AE34C3A0007F9EC /* ParseUI.framework */; };
+		09DA17E81AE7FCF600B5C621 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09DA17E71AE7FCF600B5C621 /* Settings.bundle */; };
 		09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */; };
 		09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D62E1AE2D43D00369E06 /* VideoFeedViewController.swift */; };
 		09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6301AE2D43D00369E06 /* CameraController.swift */; };
@@ -64,6 +65,7 @@
 		09BAD8161AE34C3A0007F9EC /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../../../Downloads/parse-library-1.7.1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		09BAD8171AE34C3A0007F9EC /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../../Downloads/parse-library-1.7.1/ParseUI.framework"; sourceTree = "<group>"; };
 		09BAD85D1AE43E7A0007F9EC /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
+		09DA17E71AE7FCF600B5C621 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		09E9D6271AE2D43D00369E06 /* Vantage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vantage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9D62B1AE2D43D00369E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		09E9D6291AE2D43D00369E06 /* Vantage */ = {
 			isa = PBXGroup;
 			children = (
+				09DA17E71AE7FCF600B5C621 /* Settings.bundle */,
 				2382EDA01AE34A5F003A9DFC /* UserAuth */,
 				09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */,
 				09E9D6711AE2D6FE00369E06 /* DataViewController.swift */,
@@ -310,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09DA17E81AE7FCF600B5C621 /* Settings.bundle in Resources */,
 				09E9D6341AE2D43D00369E06 /* Main.storyboard in Resources */,
 				09E9D6391AE2D43D00369E06 /* LaunchScreen.xib in Resources */,
 				09E9D6361AE2D43D00369E06 /* Images.xcassets in Resources */,
