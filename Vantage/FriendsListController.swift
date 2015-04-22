@@ -166,14 +166,16 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("HEY. WE GOT IN THE TABLE VIEW FOR CELL")
         let reuseIdentifier = "cell"
         var cell:UITableViewCell? = self.tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var user = (self.userArray[indexPath.row]) as! PFObject
+        var image : UIImage = UIImage(named: "brows.pdf")!
         cell?.textLabel?.text = (user["username"] as! String)
+        
+        
         return cell!;
     }
     
