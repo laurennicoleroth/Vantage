@@ -202,8 +202,13 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         if indexPath.row < self.collections.count {
             var collection = (self.collections[indexPath.row])
-            cell?.textLabel?.text = collection.objectId
-        }
+            var returnedDate = (collection.updatedAt!)! as NSDate
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            formatter.timeStyle = .ShortStyle
+            let dateString = formatter.stringFromDate(returnedDate)
+            cell?.textLabel?.text = dateString
+            }
         return cell!
     }
 }
