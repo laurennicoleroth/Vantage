@@ -20,6 +20,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     var collections = [];
     var collectionsArray = [];
     var queryList = [];
+    var collectionObject: AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +109,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
        // println(videoList)
         
-        if !(self.cellID == ""){
+        if ((self.cellID) != ""){
             println("did we get here")
             var videoList : [NSURL] = []
             let videoQuery = (PFQuery(className:"Collection"))
@@ -130,15 +131,17 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 //            var items = []
             let destination = segue.destinationViewController as! AVPlayerViewController
             destination.player = AVQueuePlayer(items: items) as AVQueuePlayer!
+            self.cellID = ""
         }
 
-      /*  if !(self.collectionObject == []){
-            println("does this even happen??")
-            let currentObject = [self.collectionObject] as NSArray
+        if ((collectionObject) != nil){
+            println("heheheh")
+//            let currentObject = [self.collectionObject] as NSArray
             var NewViewController : CameraController = segue.destinationViewController as! CameraController
-            println(currentObject)
-            NewViewController.collection = currentObject[0] as! PFObject
-        }*/
+            println(self.collectionObject)
+            NewViewController.selectedObject = self.collectionObject as! PFObject
+        }
+
     }
 
     func redirectCamera(){
@@ -160,9 +163,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-                var collectionRow : NSArray = [self.collections[indexPath.row]]
-                println("HEYYY!")
-                //self.collectionObject = (collectionRow)
+                var collectionRow = self.collections[indexPath.row]
+                println("HEYYY!!!!!!!!!")
+                self.collectionObject = (collectionRow)
+                println(self.collectionObject)
                 self.redirectCamera()
             }
             

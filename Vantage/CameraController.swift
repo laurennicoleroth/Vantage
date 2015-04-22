@@ -18,6 +18,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     let captureSession = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
+    var selectedObject: PFObject?
 
     func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -85,7 +86,8 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         // TODO: I feel like this could be Swiftier.
         var col = (collection != nil) ? collection! : PFObject(className: "Collection")
-
+        
+        if ((selectedObject) != nil){
         col.addObject(PFUser.currentUser()!, forKey: "collaborators")
         col.addObject(video, forKey: "videos")
         col.saveInBackgroundWithBlock {
@@ -93,6 +95,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
             if let err = error {
                 NSLog("Error saving collection: %@", err)
             }
+        }
         }
         redirect()
     }
