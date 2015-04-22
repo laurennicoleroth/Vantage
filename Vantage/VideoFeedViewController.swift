@@ -18,11 +18,22 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     var movieArray = [];
     var cellID : NSString = "";
     var collections = [];
+    var collectionsArray = [];
+    var queryList = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
+        
+        var video  = PFObject(className: "Videos")
+        var videoCollections = PFObject(className: "Collection")
+        
+        var query = PFQuery(className: "Videos")
+        var collectionQuery = PFQuery(className: "Collection")
+        queryList = query.findObjects()!
+        collectionsArray = collectionQuery.findObjects()!
+        tableView.reloadData();
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,10 +82,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var movie = (self.movieArray[indexPath.row]) as! PFObject
         var collection = (self.collections[indexPath.row]) as! PFObject
         let cell = collection.objectId as? NSString!
         self.cellID = cell!
+        println("*************************************************")
+        println(cellID)
         self.performSegueWithIdentifier("playVideo", sender: nil)
     }
   
@@ -97,7 +109,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
        // println(videoList)
         
         if !(self.cellID == ""){
-//            var videoList : [NSURL] = []
+            println("did we get here")
+            var videoList : [NSURL] = []
             let videoQuery = (PFQuery(className:"Collection"))
             let collectionID = self.cellID as String!
             let oneObject = (videoQuery.getObjectWithId(collectionID!))!
@@ -110,13 +123,13 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
                 let arrayObject = arrayQuery.getObjectWithId(videoObjectId)
                 let videoPffile = (((arrayObject!)["video"])!)
                 let videoUrl = NSURL(string: (videoPffile.url!)!)
-              //  videoList.append(videoUrl!)
+                videoList.append(videoUrl!)
             }
         
-            //let items = videoList.map({video in AVPlayerItem(URL: video)})
-            var items = []
+            let items = videoList.map({video in AVPlayerItem(URL: video)})
+//            var items = []
             let destination = segue.destinationViewController as! AVPlayerViewController
-         //   destination.player = AVQueuePlayer(items: items) as AVQueuePlayer!
+            destination.player = AVQueuePlayer(items: items) as AVQueuePlayer!
         }
 
       /*  if !(self.collectionObject == []){
@@ -148,14 +161,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
                 var collectionRow : NSArray = [self.collections[indexPath.row]]
+                println("HEYYY!")
                 //self.collectionObject = (collectionRow)
                 self.redirectCamera()
-            }
-            
-            let callActionHandlerr = { (action:UIAlertAction!) -> Void in
-                let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
-                alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alertMessage, animated: true, completion: nil)
             }
             
             let selectedIndexPath = tableView.indexPathForSelectedRow()
