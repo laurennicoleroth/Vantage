@@ -119,20 +119,25 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         let collaboratorsArray = ((currentCollection[0]["collaborators"])!)!
         collaboratorsArray.addObject(selectedFriend)
         
-        var alert = UIAlertView()
-        alert.delegate = self
-        alert.title = "Selected Row"
-        alert.message = "You selected row \(indexPath)"
-        alert.addButtonWithTitle("OK")
-        alert.show()
+//        var alert = UIAlertView()
+//        alert.delegate = self
+//        alert.title = "Selected Row"
+//        alert.message = "You selected row \(indexPath)"
+//        alert.addButtonWithTitle("OK")
+//        alert.show()
+        
+        performSegueWithIdentifier("toVideoFeed", sender: self)
     }
     
     /* Table view protocol methods */
     
-    func redirectPage(){
-        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
-        //        self.presentViewController(vc, animated: true, completion: nil)
-    }
+//    func redirectPage(){
+//        
+//        
+//        
+//        //        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList")as! FriendsListController
+//        //        self.presentViewController(vc, animated: true, completion: nil)
+//    }
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

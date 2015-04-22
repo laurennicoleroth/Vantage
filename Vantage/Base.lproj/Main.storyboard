@@ -77,7 +77,7 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="VEJ-HZ-VnN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0iN-qA-ncG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2350" y="389"/>
+            <point key="canvasLocation" x="2350" y="-91"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="9iJ-jX-cGg">
@@ -85,7 +85,7 @@
                 <avPlayerViewController storyboardIdentifier="videoPlayer" videoGravity="AVLayerVideoGravityResizeAspect" id="enO-Gq-JZ1" customClass="PlayerController" customModule="Vantage" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vzp-Bw-Gsh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2218" y="-300"/>
+            <point key="canvasLocation" x="2350" y="-828"/>
         </scene>
         <!--Camera Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -139,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="367"/>
+            <point key="canvasLocation" x="906" y="-86"/>
         </scene>
         <!--Friends List Controller-->
         <scene sceneID="hr6-PQ-bcN">
@@ -195,11 +195,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Msb-Q0-kkK" id="i3p-qw-HbP"/>
+                        <segue destination="9pv-A4-QxB" kind="show" id="ZVF-xX-Ssb" identifier="toVideoFeed"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3n-Be-i9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="640" y="650"/>
+            <point key="canvasLocation" x="948" y="674"/>
         </scene>
         <!--Item-->
         <scene sceneID="iBB-6I-cRj">
@@ -218,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJg-Qx-Gzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48" y="-793"/>
+            <point key="canvasLocation" x="-56" y="-1084"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -238,7 +239,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-104" y="-86"/>
+            <point key="canvasLocation" x="-800" y="-86"/>
         </scene>
         <!--Item-->
         <scene sceneID="LPf-Ae-prL">
@@ -257,7 +258,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvK-gi-93v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="650"/>
+            <point key="canvasLocation" x="36" y="674"/>
         </scene>
     </scenes>
     <resources>
@@ -265,7 +266,8 @@
         <image name="brows" width="60" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TiE-Eo-n7b"/>
+        <segue reference="lzU-1b-eKA"/>
         <segue reference="KmS-1f-tDh"/>
+        <segue reference="ZVF-xX-Ssb"/>
     </inferredMetricsTieBreakers>
 </document>
