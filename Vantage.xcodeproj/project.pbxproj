@@ -20,6 +20,7 @@
 		09D3BE6E1AE539EB0084164F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09BAD8171AE34C3A0007F9EC /* ParseUI.framework */; };
 		09DA17E81AE7FCF600B5C621 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09DA17E71AE7FCF600B5C621 /* Settings.bundle */; };
 		09DA17FA1AE8453F00B5C621 /* NexaRustSlab-BlackShadow01-Free.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09DA17F91AE8453400B5C621 /* NexaRustSlab-BlackShadow01-Free.otf */; };
+		09DA18011AE8548D00B5C621 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 09DA18001AE8548D00B5C621 /* play.png */; };
 		09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */; };
 		09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D62E1AE2D43D00369E06 /* VideoFeedViewController.swift */; };
 		09E9D6311AE2D43D00369E06 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E9D6301AE2D43D00369E06 /* CameraController.swift */; };
@@ -68,6 +69,7 @@
 		09BAD85D1AE43E7A0007F9EC /* FriendsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListController.swift; sourceTree = "<group>"; };
 		09DA17E71AE7FCF600B5C621 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		09DA17F91AE8453400B5C621 /* NexaRustSlab-BlackShadow01-Free.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NexaRustSlab-BlackShadow01-Free.otf"; sourceTree = "<group>"; };
+		09DA18001AE8548D00B5C621 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		09E9D6271AE2D43D00369E06 /* Vantage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vantage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E9D62B1AE2D43D00369E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09E9D62C1AE2D43D00369E06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				09E9D6771AE2D89000369E06 /* PlayerController.swift */,
 				09E9D6321AE2D43D00369E06 /* Main.storyboard */,
 				098968F51AE52E4B0086F2DA /* LoginVC.swift */,
+				09DA18001AE8548D00B5C621 /* play.png */,
 				09E9D6351AE2D43D00369E06 /* Images.xcassets */,
 				09E9D6371AE2D43D00369E06 /* LaunchScreen.xib */,
 				09E9D62A1AE2D43D00369E06 /* Supporting Files */,
@@ -338,6 +341,7 @@
 				09E9D6341AE2D43D00369E06 /* Main.storyboard in Resources */,
 				09E9D6391AE2D43D00369E06 /* LaunchScreen.xib in Resources */,
 				09E9D6361AE2D43D00369E06 /* Images.xcassets in Resources */,
+				09DA18011AE8548D00B5C621 /* play.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
