@@ -30,13 +30,28 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
         var video  = PFObject(className: "Videos")
         
-        var videoCollections = PFObject(className: "Collection")
+        //Lauren's code
+        
+        if let currentUser = PFUser.currentUser() {
+          var collectionQuery = PFQuery(className: "Collection")
+          collectionQuery.whereKey("collaborators", equalTo:currentUser)
+          var object = collectionQuery.getFirstObject()! as PFObject
+          let usersVideos = object["videos"] as! NSArray
+          usersVideos[0].fetchIfNeeded()
+          let videoFile = ((usersVideos[0]["video"])!)!
+//          println((videoFile.url!)!)
+          var videoUrl = (videoFile.url!)!
+//          videoUrl = NSURL(videoUrl)
+//          videoList.append(videoUrl)
+        }
+        
+        println(videoList)
         
         var query = PFQuery(className: "Videos")
-        var collectionQuery = PFQuery(className: "Collection")
+//        var collectionQuery = PFQuery(className: "Collection")
         
-        movieArray = query.findObjects()!
-        collectionsArray = collectionQuery.findObjects()!
+//        movieArray = query.findObjects()!
+//        collectionsArray = collectionQuery.findObjects()!
         tableView.reloadData();
     }
     
