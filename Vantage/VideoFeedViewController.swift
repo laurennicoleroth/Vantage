@@ -20,7 +20,9 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     var collections = [];
     var collectionsArray = [];
     var queryList = [];
-    var collectionObject: AnyObject?
+    var collectionObject: NSArray?
+    var selectedCollaborators: NSArray?
+    var collectionObjectId: NSString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,12 +136,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             self.cellID = ""
         }
 
-        if ((collectionObject) != nil){
-            println("heheheh")
+        if !((collectionObjectId) == ""){
 //            let currentObject = [self.collectionObject] as NSArray
             var NewViewController : CameraController = segue.destinationViewController as! CameraController
             println(self.collectionObject)
-            NewViewController.selectedObject = self.collectionObject as! PFObject
+            NewViewController.selectedCollection = self.collectionObjectId
         }
 
     }
@@ -163,10 +164,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-                var collectionRow = self.collections[indexPath.row]
-                println("HEYYY!!!!!!!!!")
-                self.collectionObject = (collectionRow)
-                println(self.collectionObject)
+//                self.selectedCollaborators = ((((self.collections[indexPath.row])["collaborators"])!)!)
+//                self.selectedVideos = ((((self.collections[indexPath.row])["videos"])!)!)
+//                println(self.selectedCollaborators)
+//                println(self.selectedVideos)
+                self.collectionObjectId = (((self.collections[indexPath.row]).objectId)!)!
                 self.redirectCamera()
             }
             

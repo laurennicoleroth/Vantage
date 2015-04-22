@@ -19,6 +19,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
     var selectedObject: PFObject?
+    var selectedCollection: NSString = ""
 
     func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -35,7 +36,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
             
             self.presentViewController(imagePicker, animated: true, completion: nil)
             navigationController?.popToRootViewControllerAnimated(true)
-            
         }
             
         else {
@@ -73,11 +73,16 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         self.dismissViewControllerAnimated(true, completion: {})
         
         let videoData = NSData(contentsOfURL: tempImage)
+        println("***************ANGELWANTSTHISHERE*********************")
         let videoFile = PFFile(name:"move.mov", data:videoData!)
+        println(videoFile)
         
         let video = PFObject(className: "Videos")
+        println(video)
         video["video"] = videoFile
         video["creator"] = PFUser.currentUser()!
+        
+        let currentUser = video["creator"]
         video.saveInBackground()
 
         /*
@@ -87,15 +92,29 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         // TODO: I feel like this could be Swiftier.
         var col = (collection != nil) ? collection! : PFObject(className: "Collection")
         
-        if ((selectedObject) != nil){
-        col.addObject(PFUser.currentUser()!, forKey: "collaborators")
-        col.addObject(video, forKey: "videos")
-        col.saveInBackgroundWithBlock {
-            (success, error) -> Void in
-            if let err = error {
-                NSLog("Error saving collection: %@", err)
-            }
-        }
+        if !(self.selectedCollection == "") {
+            let query = PFQuery(className: "Collection")
+            println("HEYOOO")
+            println(self.selectedCollection)
+            let selectCollection = (query.getObjectWithId(self.selectedCollection as String))!
+            println(selectCollection)
+            var collaborators = (selectCollection["collaborators"])!
+            var videos = (selectCollection["videos"])!
+            selectCollection.addObject(currentUser!, forKey: "collaborators")
+            selectCollection.addObject(video, forKey: "videos")
+            println(selectCollection)
+            selectCollection.saveInBackground()
+
+        } else {
+            col.addObject(PFUser.currentUser()!, forKey: "collaborators")
+                    col.addObject(video, forKey: "videos")
+                    col.saveInBackgroundWithBlock {
+                        (success, error) -> Void in
+                        if let err = error {
+                            NSLog("Error saving collection: %@", err)
+                        }
+                    }
+
         }
         redirect()
     }

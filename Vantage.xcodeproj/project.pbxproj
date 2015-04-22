@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0985892F1AE7DC7300D939E8 /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0985892E1AE7DC7300D939E8 /* CollectionContainer.swift */; };
 		098968F61AE52E4B0086F2DA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098968F51AE52E4B0086F2DA /* LoginVC.swift */; };
 		098968F81AE5302F0086F2DA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098968F71AE5302F0086F2DA /* Accounts.framework */; };
 		098968FA1AE530360086F2DA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 098968F91AE530360086F2DA /* Social.framework */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0985892E1AE7DC7300D939E8 /* CollectionContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
 		098968F51AE52E4B0086F2DA /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		098968F71AE5302F0086F2DA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		098968F91AE530360086F2DA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -130,6 +132,7 @@
 		09E9D61E1AE2D43D00369E06 = {
 			isa = PBXGroup;
 			children = (
+				0985892E1AE7DC7300D939E8 /* CollectionContainer.swift */,
 				09E9D66F1AE2D63800369E06 /* libsqlite3.dylib */,
 				09E9D66D1AE2D62D00369E06 /* libz.dylib */,
 				09E9D65A1AE2D55A00369E06 /* Frameworks */,
@@ -336,6 +339,7 @@
 				09E9D62D1AE2D43D00369E06 /* AppDelegate.swift in Sources */,
 				09E9D62F1AE2D43D00369E06 /* VideoFeedViewController.swift in Sources */,
 				09BAD85E1AE43E7A0007F9EC /* FriendsListController.swift in Sources */,
+				0985892F1AE7DC7300D939E8 /* CollectionContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
