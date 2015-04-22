@@ -28,6 +28,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self;
         tableView.delegate = self;
         
+        view.backgroundColor = UIColorFromRGB(0x209624)
+        
         var video  = PFObject(className: "Videos")
         var videoCollections = PFObject(className: "Collection")
         
@@ -37,6 +39,15 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         movieArray = query.findObjects()!
         collectionsArray = collectionQuery.findObjects()!
         tableView.reloadData();
+    }
+    
+    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
     
     override func viewDidAppear(animated: Bool){
@@ -174,9 +185,14 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if indexPath.row < self.collectionsArray.count {
             var collection = (self.collectionsArray[indexPath.row])
             var image : UIImage? = UIImage( named: "brows.pdf")
-            cell?.backgroundColor = UIColor.orangeColor()
+//            cell?.backgroundColor = UIColor.orangeColor()
+//            cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell?.imageView?.image = image
-//            cell?.textLabel?.text = collection.objectId
+            cell?.textLabel?.text = collection.objectId
+            let gradient = CAGradientLayer()
+            // layer setup...
+            cell?.backgroundView = UIView()
+            cell?.backgroundView?.layer.insertSublayer(gradient, atIndex: 0)
             
         }
         return cell!
