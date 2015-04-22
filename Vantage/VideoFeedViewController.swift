@@ -144,7 +144,12 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var collection = (self.collectionsArray[indexPath.row])
-        cell?.textLabel?.text = collection.objectId
+
+//        cell?.textLabel?.text = collection.objectId
+        var image : UIImage = UIImage(named: "Image.pdf")!
+        cell?.backgroundColor = UIColor.orangeColor()
+        cell?.textLabel?.text = (collection["collaborators"] as! String)
+//        cell?.imageView?.image = image
         return cell!;
     }
     

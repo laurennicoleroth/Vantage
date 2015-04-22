@@ -172,9 +172,9 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
         var user = (self.userArray[indexPath.row]) as! PFObject
-        var image : UIImage = UIImage(named: "brows.pdf")!
+//        var image : UIImage = UIImage(named: "brows.pdf")!
         cell?.textLabel?.text = (user["username"] as! String)
-        
+//        cell?.imageView?.image = image
         
         return cell!;
     }
