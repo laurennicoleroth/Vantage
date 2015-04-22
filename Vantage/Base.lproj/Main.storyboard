@@ -158,8 +158,8 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="FRIENDS FOR LIFE" id="JWM-dz-lLi">
-                                        <barButtonItem key="backBarButtonItem" title="BACK BITCHES!" id="rbZ-fy-fqK"/>
-                                        <barButtonItem key="leftBarButtonItem" image="brows" id="znc-Jh-jAV">
+                                        <barButtonItem key="backBarButtonItem" title="BACK" id="rbZ-fy-fqK"/>
+                                        <barButtonItem key="leftBarButtonItem" image="Nana" id="znc-Jh-jAV">
                                             <connections>
                                                 <action selector="backHome:" destination="Mqs-h3-G5g" id="6Fd-iT-6hT"/>
                                             </connections>
@@ -266,11 +266,12 @@
     </scenes>
     <resources>
         <image name="Image" width="40" height="40"/>
+        <image name="Nana" width="40" height="40"/>
         <image name="brows" width="60" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2pO-B3-OA3"/>
         <segue reference="b8g-x4-weT"/>
+        <segue reference="2pO-B3-OA3"/>
         <segue reference="TiE-Eo-n7b"/>
     </inferredMetricsTieBreakers>
 </document>

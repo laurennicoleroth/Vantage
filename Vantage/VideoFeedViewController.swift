@@ -14,6 +14,19 @@ import ParseUI
 
 class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
 
+//    for (NSString* family in [UIFont familyNames])
+//    {
+//    NSLog(@"%@", family);
+//    
+//    for family:
+//    
+//    for (NSString* name in [UIFont fontNamesForFamilyName: family])
+//    {
+//    NSLog(@"  %@", name);
+//    }
+//    }
+    
+    
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
     var cellID : NSString = "";
