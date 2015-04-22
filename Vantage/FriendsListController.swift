@@ -119,12 +119,12 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         let collaboratorsArray = ((currentCollection[0]["collaborators"])!)!
         collaboratorsArray.addObject(selectedFriend)
         
-        var alert = UIAlertView()
-        alert.delegate = self
-        alert.title = "Selected Row"
-        alert.message = "You selected row \(indexPath)"
-        alert.addButtonWithTitle("OK")
-        alert.show()
+//        var alert = UIAlertView()
+//        alert.delegate = self
+//        alert.title = "Selected Row"
+//        alert.message = "You selected row \(indexPath)"
+//        alert.addButtonWithTitle("OK")
+//        alert.show()
     }
     
     /* Table view protocol methods */

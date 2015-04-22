@@ -19,6 +19,9 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     var captureDevice : AVCaptureDevice?
     var collectionTransfer: NSObject = "";
     var holder: NSObject = "";
+    var currentObject : NSArray = []
+    var collectionID = ""
+    var holderArray = []
 
     func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -46,13 +49,44 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        if (tabBarController == nil){
+            println("uhoh! yay!")
+            self.performSegueWithIdentifier("goHome", sender: self)
+        } else {
         dismissViewControllerAnimated(true, completion: nil)
                 redirectPage()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !(self.currentObject == []){
+            unwrapCollection()
+        }
+    }
+    
+    func unwrapCollection(){
+        var unwrappedObject : AnyObject = currentObject[0]
+        var unwrappedCollectionID : AnyObject = (((unwrappedObject[0]!.objectId)!)!)
+        var doubleUnwrapped : AnyObject = (unwrappedObject[0])!
+        var collectionCollaborators : AnyObject = (((doubleUnwrapped["collaborators"])!)!)
+        var collectionVideos : AnyObject = (((doubleUnwrapped["videos"])!)!)
         
+        self.holderArray = [unwrappedObject, unwrappedCollectionID, doubleUnwrapped, collectionCollaborators, collectionVideos]
+        
+        println("############################")
+        println(unwrappedCollectionID)
+        println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+//        println(unwrappedObject)
+        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        println(collectionCollaborators)
+        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        println(collectionVideos)
+        println("******************************")
+        
+        
+    
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -79,24 +113,53 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         userVideo["video"] = videoFile
         
         let userCollection = PFObject(className: "Collection")
-        
         userCollection.addObject(userVideo, forKey: "videos")
         
         let currentUser = PFUser.currentUser()
         userVideo["creator"] = currentUser
         
-        userCollection.addObject(currentUser!, forKey: "collaborators")
         
-        userCollection.saveInBackgroundWithBlock {
-            (success, error) -> Void in
-            if success {
-                NSLog("Object create with id: (userCollection.objectId")
-            } else {
-                NSLog("We have an error")
+        if !(userCollection == []) {
+            println("heiiiii")
+//            var collectionQuery = PFQuery(className: "Collection")
+//            var collectionObj = collectionQuery.getObjectWithId(self.holderArray[1] as! String)
+            
+            
+            self.holderArray[3].addObject(currentUser!)
+            println(self.holderArray[3])
+            self.holderArray[4].addObject(userVideo)
+            println(self.holderArray[4])
+//            println(collectionObj)
+            var collectionQuery = PFQuery(className: "Collection")
+            var collectionObj = collectionQuery.getObjectWithId(self.holderArray[1] as! String)
+            println("*******************************")
+            println(collectionObj)
+            println("****************************")
+            collectionObj!.saveInBackground()
+            
+            
+        } else {
+            userCollection.addObject(userVideo, forKey: "videos")
+            userCollection.addObject(currentUser!, forKey: "collaborators")
+            
+            userCollection.saveInBackgroundWithBlock {
+                (success, error) -> Void in
+                if success {
+                    NSLog("Object create with id: (userCollection.objectId")
+                    
+                    println("+++++++++++++++++++++++++++++++")
+                    println(userVideo)
+                    
+                    println("++++++++++++++++++++++++++++++++")
+                } else {
+                    NSLog("We have an error")
+                }
             }
+            
         }
         
         userVideo.saveInBackground()
+
         
         self.collectionTransfer = userCollection as NSObject
         redirect()
@@ -116,7 +179,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     func redirectPage(){
         tabBarController!.selectedViewController = tabBarController?.viewControllers!.first as? UIViewController
-        navigationController?.popToRootViewControllerAnimated(true)
     }
 
 }
