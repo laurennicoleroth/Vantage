@@ -89,10 +89,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             var collectionQuery = PFQuery(className: "Collection")
             collectionQuery.whereKey("collaborators", equalTo:currentUser)
             var object = collectionQuery.getFirstObject()! as PFObject
-            println(object)
             let usersVideos = object["videos"] as! NSArray
             usersVideos[0].fetchIfNeeded()
-            println("Video File Here")
             let videoFile = usersVideos[0]["video"]
             let videoUrl = videoFile!!.url
             let url = NSURL(string: videoUrl)
