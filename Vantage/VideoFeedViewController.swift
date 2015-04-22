@@ -32,17 +32,18 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if let currentUser = PFUser.currentUser() {
             println(currentUser)
             var videoCollections = PFObject(className: "Collection")
-//            println(videoCollections)
+            println(videoCollections)
             
             var collectionQuery = PFQuery(className: "Collection")
             collectionQuery.whereKey("collaborators", equalTo:currentUser)
             println(collectionQuery)
-            var object = collectionQuery.getFirstObject()
-//            let usersVideos = (object!)["videos"]
-
+            var object = collectionQuery.getFirstObject()! as PFObject
+            println(object)
+            let usersVideos = object["videos"] as! NSArray
+            usersVideos[0].fetchIfNeeded()
+            println(usersVideos[0]["video"])
 //            let videosArray = (usersVideos!)
-//            println(usersVideos)
-
+//            println(videosArray[0])
 
 
             var query = PFQuery(className: "Videos")
@@ -187,7 +188,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         if indexPath.row < self.collectionsArray.count {
             var collection = (self.collectionsArray[indexPath.row])
-            cell?.textLabel?.text = collection.objectId
+            cell?.textLabel?.text = "Collection ID: \(collection.objectId)"
         }
         return cell!
     }
