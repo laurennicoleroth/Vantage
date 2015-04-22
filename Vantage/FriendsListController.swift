@@ -48,9 +48,14 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var selectedFriend = (self.userArray[indexPath.row]) as! PFObject
-        if let col = collection {
+        println("COLLECTION!!!!")
+        if let col = self.collection {
             col.addObject(selectedFriend, forKey: "collaborators")
+            col.saveInBackground()
         }
+        self.collection = nil
+        dismissViewControllerAnimated(true, completion: nil)
+//        performSegueWithIdentifier("toVideoFeed", sender: self)
     }
     
     /* Table view protocol methods */

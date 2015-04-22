@@ -196,11 +196,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Msb-Q0-kkK" id="i3p-qw-HbP"/>
+                        <segue destination="9pv-A4-QxB" kind="presentation" identifier="toVideoFeed" id="b8g-x4-weT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3n-Be-i9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="640" y="650"/>
+            <point key="canvasLocation" x="544" y="602"/>
         </scene>
         <!--Item-->
         <scene sceneID="iBB-6I-cRj">
@@ -268,8 +269,8 @@
         <image name="brows" width="60" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u7Y-xg-7CH"/>
         <segue reference="2pO-B3-OA3"/>
+        <segue reference="b8g-x4-weT"/>
         <segue reference="TiE-Eo-n7b"/>
     </inferredMetricsTieBreakers>
 </document>

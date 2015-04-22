@@ -94,8 +94,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         if !(self.selectedCollection == "") {
             let query = PFQuery(className: "Collection")
-            println("HEYOOO")
-            println(self.selectedCollection)
             let selectCollection = (query.getObjectWithId(self.selectedCollection as String))!
             println(selectCollection)
             var collaborators = (selectCollection["collaborators"])!
@@ -103,7 +101,9 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
             selectCollection.addObject(currentUser!, forKey: "collaborators")
             selectCollection.addObject(video, forKey: "videos")
             println(selectCollection)
+            self.collection = selectCollection
             selectCollection.saveInBackground()
+            
 
         } else {
             col.addObject(PFUser.currentUser()!, forKey: "collaborators")
@@ -114,8 +114,10 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
                             NSLog("Error saving collection: %@", err)
                         }
                     }
+            self.collection = col
 
         }
+        self.selectedCollection = ""
         redirect()
     }
     
