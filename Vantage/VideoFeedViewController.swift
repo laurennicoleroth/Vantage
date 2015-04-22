@@ -173,7 +173,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         if indexPath.row < self.collectionsArray.count {
             var collection = (self.collectionsArray[indexPath.row])
-            cell?.textLabel?.text = collection.objectId
+            var image : UIImage? = UIImage( named: "brows.pdf")
+            cell?.backgroundColor = UIColor.orangeColor()
+            cell?.imageView?.image = image
+//            cell?.textLabel?.text = collection.objectId
+            
         }
         return cell!
     }
