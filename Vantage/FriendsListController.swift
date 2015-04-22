@@ -96,6 +96,7 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
     func unpackArray(){
         let item = (((currentCollection[0])["collaborators"])!)!
         let originator = item[0]

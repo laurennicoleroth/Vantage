@@ -42,6 +42,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         checkUser()
     }
     
+
+    
     func redirectLogin(){
         self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
         self.modalPresentationStyle = .CurrentContext
