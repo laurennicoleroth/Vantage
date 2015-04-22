@@ -13,15 +13,11 @@ import AVFoundation
 import Parse
 
 class CameraController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    
+
+    var collection: PFObject?
     let captureSession = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
-    var collectionTransfer: NSObject = "";
-    var holder: NSObject = "";
-    var currentObject : NSArray = []
-    var collectionID = ""
-    var holderArray = []
 
     func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -58,37 +54,6 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if !(self.currentObject == []){
-            unwrapCollection()
-        }
-    }
-    
-    func unwrapCollection(){
-        var unwrappedObject : AnyObject = currentObject[0]
-        var unwrappedCollectionID : AnyObject = (((unwrappedObject[0]!.objectId)!)!)
-        var doubleUnwrapped : AnyObject = (unwrappedObject[0])!
-        var collectionCollaborators : AnyObject = (((doubleUnwrapped["collaborators"])!)!)
-        var collectionVideos : AnyObject = (((doubleUnwrapped["videos"])!)!)
-        
-        self.holderArray = [unwrappedObject, unwrappedCollectionID, doubleUnwrapped, collectionCollaborators, collectionVideos]
-        
-        println("############################")
-        println(unwrappedCollectionID)
-        println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-//        println(unwrappedObject)
-        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        println(collectionCollaborators)
-        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        println(collectionVideos)
-        println("******************************")
-        
-        
-    
-    
-    }
-    
     override func viewWillAppear(animated: Bool) {
         showCamera()
     }
@@ -100,68 +65,35 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
         let tempImage = info[UIImagePickerControllerMediaURL] as! NSURL!
- 
         let pathString = tempImage.relativePath
+        
+        // TODO: check if we need this
         self.dismissViewControllerAnimated(true, completion: {})
         
         let videoData = NSData(contentsOfURL: tempImage)
         let videoFile = PFFile(name:"move.mov", data:videoData!)
         
-        let userVideo = PFObject(className: "Videos")
-        userVideo["video"] = videoFile
-        
-        let userCollection = PFObject(className: "Collection")
-        userCollection.addObject(userVideo, forKey: "videos")
-        
-        let currentUser = PFUser.currentUser()
-        userVideo["creator"] = currentUser
-        
-        
-        if !(userCollection == []) {
-            println("heiiiii")
-//            var collectionQuery = PFQuery(className: "Collection")
-//            var collectionObj = collectionQuery.getObjectWithId(self.holderArray[1] as! String)
-            
-            
-            self.holderArray[3].addObject(currentUser!)
-            println(self.holderArray[3])
-            self.holderArray[4].addObject(userVideo)
-            println(self.holderArray[4])
-//            println(collectionObj)
-            var collectionQuery = PFQuery(className: "Collection")
-            var collectionObj = collectionQuery.getObjectWithId(self.holderArray[1] as! String)
-            println("*******************************")
-            println(collectionObj)
-            println("****************************")
-            collectionObj!.saveInBackground()
-            
-            
-        } else {
-            userCollection.addObject(userVideo, forKey: "videos")
-            userCollection.addObject(currentUser!, forKey: "collaborators")
-            
-            userCollection.saveInBackgroundWithBlock {
-                (success, error) -> Void in
-                if success {
-                    NSLog("Object create with id: (userCollection.objectId")
-                    
-                    println("+++++++++++++++++++++++++++++++")
-                    println(userVideo)
-                    
-                    println("++++++++++++++++++++++++++++++++")
-                } else {
-                    NSLog("We have an error")
-                }
-            }
-            
-        }
-        
-        userVideo.saveInBackground()
+        let video = PFObject(className: "Videos")
+        video["video"] = videoFile
+        video["creator"] = PFUser.currentUser()!
+        video.saveInBackground()
 
+        /*
+        self.holderArray = [unwrappedObject, unwrappedCollectionID, doubleUnwrapped, collectionCollaborators, collectionVideos]
+        */
         
-        self.collectionTransfer = userCollection as NSObject
+        // TODO: I feel like this could be Swiftier.
+        var col = (collection != nil) ? collection! : PFObject(className: "Collection")
+
+        col.addObject(PFUser.currentUser()!, forKey: "collaborators")
+        col.addObject(video, forKey: "videos")
+        col.saveInBackgroundWithBlock {
+            (success, error) -> Void in
+            if let err = error {
+                NSLog("Error saving collection: %@", err)
+            }
+        }
         redirect()
     }
     
@@ -170,11 +102,8 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let currentCollection = [self.collectionTransfer] as NSArray
-        var DestViewController : FriendsListController = segue.destinationViewController as! FriendsListController
-        println(currentCollection)
-        DestViewController.currentCollection = currentCollection
-        
+        var friendsList : FriendsListController = segue.destinationViewController as! FriendsListController
+        friendsList.collection = self.collection
     }
     
     func redirectPage(){

@@ -1,66 +1,6 @@
 ////
-////  SecondViewController.swift
-////  Vantage
+////  FriendsListController.swift
 ////
-////  Created by Apprentice on 4/18/15.
-////  Copyright (c) 2015 Apprentice. All rights reserved.
-////
-//
-//import UIKit
-//import MediaPlayer
-//import MobileCoreServices
-//import AVFoundation
-//import Parse
-//
-//class FriendsListController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-//
-//    override func viewDidAppear(animated:Bool) {
-//        super.viewDidAppear(animated)
-////        tableView.dataSource = self;
-////        tableView.delegate = self;
-//
-//        var users = PFObject(className: "User")
-//        var query = PFQuery(className: "User")
-//        var friendsList = query.findObjects()
-//
-//        println(friendsList)
-//
-////            if let results = query.valueForKey("username") {
-////                for user in results {
-////                println("Mooooooooooooooooopy**************************")
-////                println(user)
-////                println("Mooooooooooooooooopy**************************")
-////            }
-////        }
-//
-////        for element: PFObject? in friendsList
-////        {
-////            let friend = (element["username"] as! PFString)
-////            println(friend)
-////        }
-//
-//
-//
-//        println(query)
-////        let friends = query.findObjects()!
-////        println(friends)
-////        println("**************************")
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        println("hellllllllooooooo")
-//    }
-//
-//}
-
-//
-//  FirstViewController.swift
-//  Vantage
-//
-//  Created by Apprentice on 4/18/15.
-//  Copyright (c) 2015 Apprentice. All rights reserved.
-//
 
 import UIKit
 import Parse
@@ -70,8 +10,7 @@ import AVKit
 class FriendsListController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     var userArray = [];
-    var collectionObject: NSArray = []
-    var currentCollection = NSArray()
+    var collection: PFObject?
     var holderArray : NSArray = []
     
     @IBOutlet weak var tableView: UITableView!
@@ -87,18 +26,12 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
-        unpackArray()
-        
+
         if let users = PFUser.query() {
             userArray = users.findObjects()!
             println(userArray)
             tableView.reloadData();
         }
-    }
-    
-    func unpackArray(){
-        let item = (((currentCollection[0])["collaborators"])!)!
-        let originator = item[0]
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,17 +47,10 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         var selectedFriend = (self.userArray[indexPath.row]) as! PFObject
-        let collaboratorsArray = ((currentCollection[0]["collaborators"])!)!
-        collaboratorsArray.addObject(selectedFriend)
-        
-//        var alert = UIAlertView()
-//        alert.delegate = self
-//        alert.title = "Selected Row"
-//        alert.message = "You selected row \(indexPath)"
-//        alert.addButtonWithTitle("OK")
-//        alert.show()
+        if let col = collection {
+            col.addObject(selectedFriend, forKey: "collaborators")
+        }
     }
     
     /* Table view protocol methods */

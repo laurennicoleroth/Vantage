@@ -17,45 +17,32 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
     var cellID : NSString = "";
-    var collectionsArray = [];
-    var collectionObject : NSArray = []
-    var videoIdList : NSMutableArray = []
-    var videoList : [NSURL] = []
-    
+    var collections = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
-        
-        var video  = PFObject(className: "Videos")
-        
-        //Lauren's code
-        
-//        if let currentUser = PFUser.currentUser() {
-//          var collectionQuery = PFQuery(className: "Collection")
-//          collectionQuery.whereKey("collaborators", equalTo:currentUser)
-//          var object = collectionQuery.getFirstObject()! as PFObject
-//          let usersVideos = object["videos"] as! NSArray
-//          usersVideos[0].fetchIfNeeded()
-//          let videoFile = ((usersVideos[0]["video"])!)!
-//          let videoUrl = NSURL(string: (videoFile.url!)!)
-//          videoList.append(videoUrl!)
-//        }
-        
-        println(videoList)
-        
-        var query = PFQuery(className: "Videos")
-//        var collectionQuery = PFQuery(className: "Collection")
-        
-//        movieArray = query.findObjects()!
-//        collectionsArray = collectionQuery.findObjects()!
-        tableView.reloadData();
     }
     
-    override func viewDidAppear(animated: Bool){
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         checkUser()
+        fetchCollectionsForUserAndReload()
+    }
+    
+    func fetchCollectionsForUserAndReload() {
+        var query = PFQuery(className: "Collection")
+        query.whereKey("collaborators", equalTo: PFUser.currentUser()!)
+        query.findObjectsInBackgroundWithBlock({ (cols: [AnyObject]?, err:NSError?) -> Void in
+            if let c = cols {
+                self.collections = c
+                self.tableView.reloadData();
+            }
+            if let e = err {
+                NSLog("Error loading collection: %@", e)
+            }
+        })
     }
     
     func redirectLogin(){
@@ -85,7 +72,7 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var movie = (self.movieArray[indexPath.row]) as! PFObject
-        var collection = (self.collectionsArray[indexPath.row]) as! PFObject
+        var collection = (self.collections[indexPath.row]) as! PFObject
         let cell = collection.objectId as? NSString!
         self.cellID = cell!
         self.performSegueWithIdentifier("playVideo", sender: nil)
@@ -104,10 +91,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             usersVideos[0].fetchIfNeeded()
             let videoFile = ((usersVideos[0]["video"])!)!
             let videoUrl = NSURL(string: (videoFile.url!)!)
-            videoList.append(videoUrl!)
+            //videoList.append(videoUrl!)
         }
         
-        println(videoList)
+       // println(videoList)
         
         if !(self.cellID == ""){
 //            var videoList : [NSURL] = []
@@ -123,33 +110,36 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
                 let arrayObject = arrayQuery.getObjectWithId(videoObjectId)
                 let videoPffile = (((arrayObject!)["video"])!)
                 let videoUrl = NSURL(string: (videoPffile.url!)!)
-                videoList.append(videoUrl!)
+              //  videoList.append(videoUrl!)
             }
         
-            let items = videoList.map({video in AVPlayerItem(URL: video)})
+            //let items = videoList.map({video in AVPlayerItem(URL: video)})
+            var items = []
             let destination = segue.destinationViewController as! AVPlayerViewController
-            destination.player = AVQueuePlayer(items: items) as AVQueuePlayer!
+         //   destination.player = AVQueuePlayer(items: items) as AVQueuePlayer!
         }
 
-        if !(self.collectionObject == []){
+      /*  if !(self.collectionObject == []){
             println("does this even happen??")
             let currentObject = [self.collectionObject] as NSArray
             var NewViewController : CameraController = segue.destinationViewController as! CameraController
             println(currentObject)
-            NewViewController.currentObject = currentObject
-    
-        }
-
-        
+            NewViewController.collection = currentObject[0] as! PFObject
+        }*/
     }
 
     func redirectCamera(){
         self.performSegueWithIdentifier("addVideo", sender: self)
     }
-
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
     
+    func tableView(tableView: UITableView,
+        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+        forRowAtIndexPath indexPath: NSIndexPath) { }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return collections.count;
+    }
+
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
         // 1
         var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
@@ -157,8 +147,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
             let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
             
             let callActionHandler = { (action:UIAlertAction!) -> Void in
-                var collectionRow : NSArray = [self.collectionsArray[indexPath.row]]
-                self.collectionObject = (collectionRow)
+                var collectionRow : NSArray = [self.collections[indexPath.row]]
+                //self.collectionObject = (collectionRow)
                 self.redirectCamera()
             }
             
@@ -185,11 +175,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         // 5
         return [recordAction]
     }
-    
+
     func newRecording(){
         self.performSegueWithIdentifier("addVideo", sender: self)
     }
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseIdentifier = "cell"
@@ -197,16 +186,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         if(cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         }
-        if indexPath.row < self.collectionsArray.count {
-            var collection = (self.collectionsArray[indexPath.row])
+        if indexPath.row < self.collections.count {
+            var collection = (self.collections[indexPath.row])
             cell?.textLabel?.text = collection.objectId
         }
         return cell!
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieArray.count;
-    }
-
 }
 
