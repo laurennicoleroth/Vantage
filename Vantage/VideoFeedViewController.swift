@@ -32,18 +32,16 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //Lauren's code
         
-        if let currentUser = PFUser.currentUser() {
-          var collectionQuery = PFQuery(className: "Collection")
-          collectionQuery.whereKey("collaborators", equalTo:currentUser)
-          var object = collectionQuery.getFirstObject()! as PFObject
-          let usersVideos = object["videos"] as! NSArray
-          usersVideos[0].fetchIfNeeded()
-          let videoFile = ((usersVideos[0]["video"])!)!
-//          println((videoFile.url!)!)
-          var videoUrl = (videoFile.url!)!
-//          videoUrl = NSURL(videoUrl)
-//          videoList.append(videoUrl)
-        }
+//        if let currentUser = PFUser.currentUser() {
+//          var collectionQuery = PFQuery(className: "Collection")
+//          collectionQuery.whereKey("collaborators", equalTo:currentUser)
+//          var object = collectionQuery.getFirstObject()! as PFObject
+//          let usersVideos = object["videos"] as! NSArray
+//          usersVideos[0].fetchIfNeeded()
+//          let videoFile = ((usersVideos[0]["video"])!)!
+//          let videoUrl = NSURL(string: (videoFile.url!)!)
+//          videoList.append(videoUrl!)
+//        }
         
         println(videoList)
         
@@ -98,9 +96,21 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     var videoUrlArray : [NSURL] = []
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let currentUser = PFUser.currentUser() {
+            var collectionQuery = PFQuery(className: "Collection")
+            collectionQuery.whereKey("collaborators", equalTo:currentUser)
+            var object = collectionQuery.getFirstObject()! as PFObject
+            let usersVideos = object["videos"] as! NSArray
+            usersVideos[0].fetchIfNeeded()
+            let videoFile = ((usersVideos[0]["video"])!)!
+            let videoUrl = NSURL(string: (videoFile.url!)!)
+            videoList.append(videoUrl!)
+        }
+        
+        println(videoList)
         
         if !(self.cellID == ""){
-            var videoList : [NSURL] = []
+//            var videoList : [NSURL] = []
             let videoQuery = (PFQuery(className:"Collection"))
             let collectionID = self.cellID as String!
             let oneObject = (videoQuery.getObjectWithId(collectionID!))!
