@@ -19,6 +19,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     var captureDevice : AVCaptureDevice?
     var collectionTransfer: NSObject = "";
     var holder: NSObject = "";
+    var goHome = false
 
     func showCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -56,6 +57,11 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     override func viewWillAppear(animated: Bool) {
+        if (self.goHome == true){
+            println("*********************************************")
+            redirectPage()
+        }
+        println("___________________%%%____%__%_%_%_%_%_%_")
         showCamera()
     }
     
@@ -104,6 +110,9 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     func redirect(){
         self.performSegueWithIdentifier("sendFriends", sender: self)
+//        self.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+//        self.modalPresentationStyle = .CurrentContext
+//        self.presentViewController(FriendsListController(), animated:true, completion:nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

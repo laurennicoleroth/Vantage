@@ -73,18 +73,22 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     var collectionObject: NSArray = []
     var currentCollection = NSArray()
     var holderArray : NSArray = []
+    var goHome = false
     
     @IBOutlet weak var tableView: UITableView!
    
     @IBAction func backHome(sender: AnyObject) {
         // redirects you home. maintains tabs
         println("why arent we going back????")
-        //navigationController!.showViewController(VideoFeedViewController(), sender: self)
+        self.goHome = true
+                //navigationController!.showViewController(VideoFeedViewController(), sender: self)
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("**********************************************************************")
+        println(tableView.dataSource)
         tableView.dataSource = self;
         tableView.delegate = self;
         unpackArray()
@@ -94,6 +98,12 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
             println(userArray)
             tableView.reloadData();
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        var CameraViewController : CameraController = segue.destinationViewController as! CameraController
+        CameraViewController.goHome = true
     }
     
     
