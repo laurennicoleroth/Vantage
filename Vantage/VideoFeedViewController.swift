@@ -17,40 +17,17 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     var movieArray = [];
     var userArray = [];
+    var urlArray : NSArray = [];
     var cellID : NSString = "";
     var collectionsArray = [];
     var collectionObject : NSArray = []
+    var video  = PFObject(className: "Videos")
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self;
         tableView.delegate = self;
-
-        var video  = PFObject(className: "Videos")
-        
-        if let currentUser = PFUser.currentUser() {
-            println(currentUser)
-            var videoCollections = PFObject(className: "Collection")
-            println(videoCollections)
-            
-            var collectionQuery = PFQuery(className: "Collection")
-            collectionQuery.whereKey("collaborators", equalTo:currentUser)
-            println(collectionQuery)
-            var object = collectionQuery.getFirstObject()! as PFObject
-            println(object)
-            let usersVideos = object["videos"] as! NSArray
-            usersVideos[0].fetchIfNeeded()
-            println(usersVideos[0]["video"])
-//            let videosArray = (usersVideos!)
-//            println(videosArray[0])
-
-
-            var query = PFQuery(className: "Videos")
-
-            collectionsArray = collectionQuery.findObjects()!
-            tableView.reloadData();
-        }
     }
 
     override func viewDidAppear(animated: Bool){
@@ -82,7 +59,6 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        var movie = (self.movieArray[indexPath.row]) as! PFObject
         var collection = (self.collectionsArray[indexPath.row]) as! PFObject
         let cell = collection.objectId as? NSString!
         self.cellID = cell!
@@ -97,22 +73,34 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 //        collaboratorsArray.addObject(selectedFriend)
         //Find collections that include currentUser in their collaborators array
         
+//        
+        if let currentUser = PFUser.currentUser() {
+//            var videoQuery = (PFQuery(className:"Collection"))
+//            let collectionID = self.cellID as String!
+//
+//            let oneObject = (videoQuery.getObjectWithId(collectionID!))!
+//
+//            let unPack = (oneObject["videos"])!
+//            //loop here for all files. I think there might be more later....
+//            let firstVideoFile = (unPack[0]["video"]!)!
+//            let videoUrl = (firstVideoFile.url!)!
+            
         
+            var collectionQuery = PFQuery(className: "Collection")
+            collectionQuery.whereKey("collaborators", equalTo:currentUser)
+            var object = collectionQuery.getFirstObject()! as PFObject
+            println(object)
+            let usersVideos = object["videos"] as! NSArray
+            usersVideos[0].fetchIfNeeded()
+            println("Video File Here")
+            let videoFile = usersVideos[0]["video"]
+            let videoUrl = videoFile!!.url
+            let url = NSURL(string: videoUrl)
         
-        var videoQuery = (PFQuery(className:"Collection"))
-        let collectionID = self.cellID as String!
+            let destination = segue.destinationViewController as! AVPlayerViewController
 
-        let oneObject = (videoQuery.getObjectWithId(collectionID!))!
-
-        let unPack = (oneObject["videos"])!
-        //loop here for all files. I think there might be more later....
-        let firstVideoFile = (unPack[0]["video"]!)!
-        let videoUrl = (firstVideoFile.url!)!
-        let url = NSURL(string: videoUrl)
-
-        let destination = segue.destinationViewController as! AVPlayerViewController
-
-        destination.player = AVQueuePlayer(URL: url)
+            destination.player = AVQueuePlayer(URL: url)
+        }
 
 //        if(cellID != ""){
 //        var query = PFQuery(className: "Videos")
