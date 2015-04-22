@@ -28,7 +28,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self;
         tableView.delegate = self;
         
-        view.backgroundColor = UIColorFromRGB(0x209624)
+        //FFA44B nav/background 
+        //FFECDB cells
+        
+        view.backgroundColor = UIColorFromRGB(0xFFA44B)
         
         var video  = PFObject(className: "Videos")
         var videoCollections = PFObject(className: "Collection")
@@ -189,8 +192,8 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
 //            cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell?.imageView?.image = image
             cell?.textLabel?.text = collection.objectId
+            cell?.backgroundColor = UIColorFromRGB(0xFFECDB);
             let gradient = CAGradientLayer()
-            // layer setup...
             cell?.backgroundView = UIView()
             cell?.backgroundView?.layer.insertSublayer(gradient, atIndex: 0)
             
