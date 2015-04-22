@@ -39,10 +39,11 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.reloadData();
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        checkUser()
-        fetchCollectionsForUserAndReload()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if checkUser(){
+            fetchCollectionsForUserAndReload()
+        } 
     }
     
     func fetchCollectionsForUserAndReload() {
@@ -65,13 +66,28 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
         self.presentViewController(LoginVC(), animated:true, completion:nil)
     }
     
-    func checkUser() {
-        
-        var currentUser = PFUser.currentUser()
-        if (currentUser == nil){
-            println("do we have a user??")
-            redirectLogin()
+    func checkUser() -> Bool {
+        if (PFUser.currentUser() == nil) {
+            println("displaying login sheet")
+            
+            var logInViewController = PFLogInViewController()
+            logInViewController.delegate = self
+            
+            var signUpViewController = PFSignUpViewController()
+            signUpViewController.delegate = self
+            
+            logInViewController.signUpController = signUpViewController
+            self.presentViewController(logInViewController, animated: true, completion: nil)
+            
+            return false
+        } else {
+            return true
         }
+//        var currentUser = PFUser.currentUser()
+//        if (currentUser == nil){
+//            println("do we have a user??")
+//            redirectLogin()
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,6 +98,10 @@ class VideoFeedViewController: UIViewController, UITableViewDelegate, UITableVie
     func retrieveVideoFromParse(objects: [PFObject]) {
         var query = PFQuery(className: "Videos")
         
+    }
+    
+    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
