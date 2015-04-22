@@ -18,11 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.registerDefaults(["log_out" : false])
         // Override point for customization after application launch.
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
         Parse.enableLocalDatastore()
-        
         // Initialize Parse.
         Parse.setApplicationId("WBn97RGreYL7ObCfSaZlgMv2boXk4xkyI5Lz6Hce",
             clientKey: "FFR5jrkbErWnPUxW3ZipyCTtVTz4QPdo8rb7JOco")
@@ -30,8 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         
+        if prefs.boolForKey("log_out") {
+            println("logging out user")
+            PFUser.logOut()
+            prefs.setBool(false, forKey: "log_out")
+        }
         return true
-
     }
 
     func applicationWillResignActive(application: UIApplication) {
