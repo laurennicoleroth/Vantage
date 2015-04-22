@@ -128,6 +128,7 @@ class CameraController: UIViewController, UIImagePickerControllerDelegate, UINav
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var friendsList : FriendsListController = segue.destinationViewController as! FriendsListController
         friendsList.collection = self.collection
+        self.collection = nil
     }
     
     func redirectPage(){

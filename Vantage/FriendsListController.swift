@@ -48,7 +48,6 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var selectedFriend = (self.userArray[indexPath.row]) as! PFObject
-        println("COLLECTION!!!!")
         if let col = self.collection {
             col.addObject(selectedFriend, forKey: "collaborators")
             col.saveInBackground()
@@ -67,54 +66,6 @@ class FriendsListController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
-    
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
-        // 1
-        var recordAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "REC" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            // 2
-            let recordMenu = UIAlertController(title: nil, message: "Add on!", preferredStyle: .ActionSheet)
-            
-            let callActionHandler = { (action:UIAlertAction!) -> Void in
-                //                var vc = self.storyboard?.instantiateViewControllerWithIdentifier("friendsList") as! FriendsListController
-                //                self.presentViewController(vc, animated: true, completion: nil)
-                
-            }
-            
-            let callActionHandlerr = { (action:UIAlertAction!) -> Void in
-                let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
-                alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alertMessage, animated: true, completion: nil)
-            }
-            
-            let selectedIndexPath = tableView.indexPathForSelectedRow()
-            
-            let recordAction = UIAlertAction(title: "Record", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in println(selectedIndexPath)})
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            
-            recordMenu.addAction(recordAction)
-            recordMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(recordMenu, animated: true, completion: nil)
-        })
-        // 3
-        var playAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: ">" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            // 4
-            let playMenu = UIAlertController(title: nil, message: "Play!", preferredStyle: .ActionSheet)
-            
-            let playAction = UIAlertAction(title: "Play", style: UIAlertActionStyle.Default, handler: nil)
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-            
-            playMenu.addAction(playAction)
-            playMenu.addAction(cancelAction)
-            
-            
-            self.presentViewController(playMenu, animated: true, completion: nil)
-        })
-        // 5
-        return [recordAction,playAction]
     }
     
     
